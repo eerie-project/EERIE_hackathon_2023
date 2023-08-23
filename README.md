@@ -31,20 +31,35 @@ Description of simulations: https://easy.gems.dkrz.de/DYAMOND/NextGEMS/index.htm
 
 ## What you need to get started
 * DKRZ account for IFS/FESOM and ICON
+    * use python3/unstable as kernel
 * JASMIN for UM/NEMO, UM/NEMO and IFS
 
+## How to start
 
-## Examples (for now mostly planned :) )
-* Basics (acces data on original grid, get data for one time step, open grid, have a look at data)
-* Regriding to regular grid
-* Plot global and regional map
-* Find a point nearest to coorrdinates, extract timeseries
-* Find a set of points closest to transect, plot transect
-* Effectve, parallel aggregations
+### General knowlege
+
+- For unstructured meshes: [`/COMMON/FESOM2_ICON_grids_easy_plot_and_interpolate.ipynb`](/COMMON/FESOM2_ICON_grids_easy_plot_and_interpolate.ipynb)
+- For data interpolated to regular grid: [`COMMON/Soon_not_be_created_interpolated_ocean_data_start.ipynb`](COMMON/Soon_not_be_created_interpolated_ocean_data_start.ipynb)
+- For interpolation from NEMO/FESOM/IFS/UM grid to regular grid: [`COMMON/Soon_not_be_created_interpolate_to_regular.ipynb`](COMMON/Soon_not_be_created_interpolate_to_regular.ipynb)
+- For effective parallel aggregations with dask: [`COMMON/Soon_not_be_created_parallel_aggregations_with_dask.ipynb`](COMMON/Soon_not_be_created_parallel_aggregations_with_dask.ipynb)
+
+
+### Individual models
+
+Each coupled model example is located in individual folders, which are in turn split into components. Begin with `START_HERE.ipynb` for each component, and then explore the notebooks from the list in the README.
+
+## Examples (for now, mostly planned :) )
+* Basics (access data on the original grid, get data for one time step, open grid, have a look at the data)
+* Regridding to a regular grid
+* Plotting global and regional maps
+* Finding a point nearest to coordinates, extracting time series
+* Finding a set of points closest to a transect, plotting the transect
+* Effective, parallel aggregations
 * Area integral, Volume integral
 * Curl
-* Transport through transect
+* Transport through a transect
 * Compute AMOC
+
 
 ## Standard variables (tentative list, will be coordinated between modelling groups)
 
