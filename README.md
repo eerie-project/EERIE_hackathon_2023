@@ -96,3 +96,28 @@ This ensures that changes are reviewed and integrated systematically. Please avo
 
 Thank you for your interest in contributing to the EERIE_hackathon_2023 project!
 
+## Model documentation and useful links
+
+### IFS/FESOM
+* [IFS website](https://www.ecmwf.int/en/forecasts/documentation-and-support/changes-ecmwf-model)
+* [FESOM2 GitHub repo](https://github.com/FESOM/fesom2)
+* [FESOM2 documentation](https://fesom2.readthedocs.io/en/latest/)
+* [pyfesom2](https://github.com/FESOM/pyfesom2), python library to work with FESOM2 data
+* [fint](https://github.com/FESOM/fint) FESOM2 interpolation command line utilities
+
+### ICON
+
+* [ICON website](https://code.mpimet.mpg.de/projects/iconpublic)
+
+### IFS/NEMO
+
+* [IFS website](https://www.ecmwf.int/en/forecasts/documentation-and-support/changes-ecmwf-model)
+
+### UM/NEMO
+
+* [UM website](https://www.metoffice.gov.uk/research/approach/modelling-systems/unified-model)
+
+### IFS
+
+* [IFS website](https://www.ecmwf.int/en/forecasts/documentation-and-support/changes-ecmwf-model)
+
