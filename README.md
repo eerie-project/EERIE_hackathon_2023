@@ -35,6 +35,13 @@ UM/NEMO
 IFS
 ---
 
+
+What you need to get started
+============================
+* DKRZ account for IFS/FESOM and ICON
+* JASMIN for UM/NEMO, UM/NEMO and IFS
+
+
 Examples
 ========
 
@@ -57,4 +64,9 @@ Standard variables (tentative)
 * ...
 * 
 
+External resources
+==================
 
+* [easy.gems](https://easy.gems.dkrz.de/) as a user-driven site for documenting high-resolution climate simulation output and its increasingly challenging analysis
+* [Cycle 2 nextGEMS Hackathon repository](https://github.com/nextGEMS/nextGems_Cycle2)
+* [Cycle 3 nextGEMS Hackthon repository](https://github.com/nextGEMS/nextGEMS_Cycle3)
