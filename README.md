@@ -32,7 +32,7 @@ Description of simulations: https://easy.gems.dkrz.de/DYAMOND/NextGEMS/index.htm
 ## What you need to get started
 * DKRZ account for IFS/FESOM and ICON
     * use python3/unstable as kernel
-* JASMIN for UM/NEMO, UM/NEMO and IFS
+* JASMIN for UM/NEMO, IFS/NEMO and IFS
 
 ## How to start
 
