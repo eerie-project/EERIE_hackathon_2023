@@ -33,6 +33,7 @@ Description of simulations: https://easy.gems.dkrz.de/DYAMOND/NextGEMS/index.htm
 * DKRZ account for IFS/FESOM and ICON ([Science Hour presentation from Fabian Wachsmann](https://eerie-project.eu/science-hour/2023/07/27/introduction-to-levante-and-easy-gems/)
     * use python3/unstable as kernel
 * JASMIN for UM/NEMO, IFS/NEMO and IFS ([Science Hour presentation from Malcolm Roberts](https://eerie-project.eu/science-hour/2023/06/29/introduction-to-jasmin-and-datasets/))
+    * [How to use EERIE's facilities at JASMIN](https://github.com/eerie-project/jasmin_instructions#how-to-use-eeries-facilities-at-jasmin)
 
 ## How to start
 

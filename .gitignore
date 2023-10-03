@@ -9,3 +9,5 @@ __pycache__/
 # Distribution / packaging
 .Python
 
+# VSCode
+*.code-workspace
