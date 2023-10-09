@@ -6,6 +6,17 @@ This repo contain infromation necessary for data access, and examples of data pr
 
 The EERIE simulations are not ready yet, so initially examples will be based on data from other projects. We will gradually update examples with EERIE simulations when they become available.
 
+We have compiled a list of variables that we aim to make available during the hackathon.
+https://docs.google.com/spreadsheets/d/1HWtNO28EBd4O6PdOh5RCHIHsgQ_TByT5F4i2ugNVTfg/edit#gid=0
+
+There are two sheets:
+
+* EERIE: comprises first-priority variables interpolated to a 0.25-degree regular grid. We will try to deliver these for all simulations.
+
+* WP7: lists second-priority variables. We will also strive to deliver these, but availability might differ among modeling groups.
+
+Kindly plan your hackathon tasks with this in mind.
+
 ### IFS/FESOM
 
 **Test data** 
