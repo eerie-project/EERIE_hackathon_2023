@@ -5,6 +5,7 @@ Currently for examples we use [nextGEMS Cycle 3](https://easy.gems.dkrz.de/DYAMO
 ## Notebooks
 
 * START_HERE.ipynb - simple, basic example, without a lot of explanations. Access to data, plot
+* HOWTO_aggregate_data_native_grid_parallel - example of how to aggregate high resolution/high frequency data with dask. Works for FESOM and should work for other models as well.
 * Catalogs_explained.ipynb - working with catalogs and list available "data collections"
 
 ## Data collections
