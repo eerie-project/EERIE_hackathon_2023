@@ -81,12 +81,9 @@ Each coupled model example is located in individual folders, which are in turn s
 * Compute AMOC
 
 
-## Standard variables (tentative list, will be coordinated between modelling groups)
+## Standard variables
 
-* SST, daily
-* SSH, daily
-* ...
-* 
+Here is the [list of variables, that will be available during hackathon](https://docs.google.com/spreadsheets/d/1HWtNO28EBd4O6PdOh5RCHIHsgQ_TByT5F4i2ugNVTfg/edit#gid=83304216).
 
 ## External resources
 
