@@ -53,8 +53,8 @@ Initial data from the full eerie-piControl simulation is available:
     * use python3/unstable as kernel
 * JASMIN for UM/NEMO, IFS/NEMO and IFS ([Science Hour presentation from Malcolm Roberts](https://eerie-project.eu/science-hour/2023/06/29/introduction-to-jasmin-and-datasets/))
     * [How to use EERIE's facilities at JASMIN](https://github.com/eerie-project/jasmin_instructions#how-to-use-eeries-facilities-at-jasmin)
-    * [How to use the earlier version of this repo](https://eerie-project.eu/science-hour/2023/08/24/use-of-ifs-fesom-and-icon-km-scale-data/)
-    * [Use of the ESGF portal to screen and download data of the Pre-EERIE simulations](https://eerie-project.eu/science-hour/2023/09/08/the-use-of-the-esgf-portal-to-screen-and-download-data-of-the-pre-eerie-simulations/)
+* [How to use the earlier version of this repo](https://eerie-project.eu/science-hour/2023/08/24/use-of-ifs-fesom-and-icon-km-scale-data/)
+* [Use of the ESGF portal to screen and download data of the Pre-EERIE simulations](https://eerie-project.eu/science-hour/2023/09/08/the-use-of-the-esgf-portal-to-screen-and-download-data-of-the-pre-eerie-simulations/)
 
 ## How to start
 
