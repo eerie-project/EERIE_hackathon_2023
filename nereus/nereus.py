@@ -9,7 +9,6 @@ from scipy.interpolate import (
     LinearNDInterpolator,
     NearestNDInterpolator,
 )
-import pyicon as pyic
 import pyproj
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
@@ -217,49 +216,6 @@ def transect_get_lonlat(lon_start, lat_start, lon_end, lat_end, npoints=30):
 def transect_get_nodes(lonlat, lons, lats):
     nodes = tunnel_fast1d(lats, lons, lonlat)
     return nodes.astype("int")
-
-
-def crop_icon_data_to_bbox(grid, data, bbox):
-    """ Crops ICON data to a bbox
-
-    Parameters:
-    -----------
-    grid : xr.Dataset
-        A dataset containing grid information. Should have previously
-            had pyic.convert_tgrid called on it.
-    data : xr.Dataset or xr.DataArray
-        An xarray object containing the data you want to crop
-    bbox : tuple
-        Bounds of the box you want to crop to in the form
-            (west lon, east lon, south lat, north lat)
-
-    Returns:
-    --------
-    grid_crop : xr.Dataset
-        cropped version of grid
-    data : xr.Dataset or xr.DataArray
-        cropped version of the data
-    """
-    mask = (
-        (grid["clon"] > bbox[0]) * (grid["clon"] < bbox[1]) * 
-        (grid["clat"] > bbox[2]) * (grid["clat"] < bbox[3])
-    ).compute()
-    
-    ireg_c = grid["cell"].where(mask == 1, drop=True)
-
-    ireg_c = grid["cell"].where(((grid["clon"] > -100) * (grid["clon"] < 0) * (grid["clat"] > 20) * (grid["clat"] < 60)).compute() == 1, drop=True)
-    ireg_c = ireg_c.astype("int32")
-
-    grid_crop = pyic.xr_crop_tgrid(grid, ireg_c)
-
-    if "cell" in data.dims:
-        data = data.isel(cell=grid_crop["ireg_c"])
-    if "edge" in data.dims:
-        data = data.isel(edge=grid_crop["ireg_e"])
-    if "vertex" in data.dims:
-        data = data.isel(vertex=grid_crop["ireg_v"])
-
-    return grid_crop, data
 
 
 def transect_get_distance(lonlat):
