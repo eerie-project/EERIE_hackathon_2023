@@ -4,7 +4,7 @@ This repo contain infromation necessary for data access, and examples of data pr
 
 ## Data
 
-The EERIE simulations are not ready yet, so initially examples will be based on data from other projects. We will gradually update examples with EERIE simulations when they become available.
+The EERIE simulations are in progress, so initially examples will be based on data from other projects, but there are already some EERIE based examples as well. We will gradually update examples with EERIE simulations when they become available.
 
 We have compiled a list of variables that we aim to make available during the hackathon.
 https://docs.google.com/spreadsheets/d/1HWtNO28EBd4O6PdOh5RCHIHsgQ_TByT5F4i2ugNVTfg/edit#gid=0
@@ -17,25 +17,42 @@ There are two sheets:
 
 Kindly plan your hackathon tasks with this in mind.
 
-### IFS/FESOM
+### Data structure
 
-**Test data** 
+Data will be available through intake catalogs. Simple way to access the data (if you on DKRZ):
 
-nextGEMS Cycle 3 simulations
+```python
+import intake
+cat = intake.open_catalog("https://raw.githubusercontent.com/eerie-project/intake_catalogues/main/eerie.yaml")
+data = cat['dkrz']['disk']['model-output']['icon-esm-er']['eerie-control-1950']['atmos']['gr025']['2d_monthly_mean'].to_dask()
+```
 
-Description of simulations: https://easy.gems.dkrz.de/DYAMOND/NextGEMS/index.html#id4
+Navigating through catalogs can be tricky at first, here is an [EXAMPLE OF HOW TO WORK WITH CATALOGS](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/COMMON/searching_catalogs.ipynb) 
 
-### ICON
+### Sumulations
 
-**Test data**
+#### IFS/FESOM
 
-nextGEMS Cycle 2 simulations
+##### Test data 
+* nextGEMS Cycle 3 simulations. Description of simulations: https://easy.gems.dkrz.de/DYAMOND/NextGEMS/index.html#id4
 
-Description of simulations: https://easy.gems.dkrz.de/DYAMOND/NextGEMS/index.html#id1
+##### EERIE simulations
 
-### IFS/NEMO
+* eerie-control-1950 - tco1279-NG5 (atmosphere 10 km, ocean 5-13 km). Currently 2 years available.
+  * cat['dkrz']['disk']['model-output']['ifs-fesom2-sr']['eerie-control-1950']
 
-### UM/NEMO
+#### ICON
+
+##### Test data
+* nextGEMS Cycle 2 simulations Description of simulations: https://easy.gems.dkrz.de/DYAMOND/NextGEMS/index.html#id1
+
+##### EERIE simulations
+* eerie-control-1950 - 10 km ocean and atmosphere
+  * cat['dkrz']['disk']['model-output']['icon-esm-er']['eerie-control-1950']
+
+##### IFS/NEMO
+
+##### UM/NEMO
 
 Initial data from the full eerie-piControl simulation is available:
 
@@ -45,8 +62,16 @@ Initial data from the full eerie-piControl simulation is available:
 | HadGEM3-GC5-EERIE-N216-ORCA025 | 1851 - 1981 |
 | HadGEM3-GC5-EERIE-N640-ORCA12  | 1851 - 1901 |
 
-### IFS
+##### IFS
+For now all AMIP at tco399
+* with prepIFS, and various forcing bugfixes, but lacking some NextGEMS science updates : 2010-01-20 to 2021-01-01, forced with OSTIA: labeled "amip-hist-obs" 2010-01-20 to 2021-01-01, forced with OSTIA, SST anomalies smoothed with 30x Rossby radius: labeled "amip-hist-obs-LR30"
+* with NextGEMS cycle config (that is, perpetual year and missing some bugfixes): 2020-01-20 to 2022-01-01, forced with OSTIA, labeled "amip-NG-obs" 2020-01-20 to 2022-01-01, forced with OSTIA, SST anomalies smoothed with 30x Rossby radius, labeled "amip-NG-obs-LR30"
 
+For the prepIFS runs the gribscan .json files have been processed and the catalogues work (they live in /home/b/b382473/code/testing/catalogues/ for testing). I'm still wrangling with the MultIO output from NextGEMS.
+
+##### OBSERVATIONS
+
+Here is [README with description of observations](https://github.com/eerie-project/EERIE_hackathon_2023/tree/main/OBSERVATIONS)
 
 ## What you need to get started
 * DKRZ account for IFS/FESOM and ICON ([Science Hour presentation from Fabian Wachsmann](https://eerie-project.eu/science-hour/2023/07/27/introduction-to-levante-and-easy-gems/)
@@ -61,9 +86,9 @@ Initial data from the full eerie-piControl simulation is available:
 ### General knowlege
 
 - For unstructured meshes: [`/COMMON/FESOM2_ICON_grids_easy_plot_and_interpolate.ipynb`](/COMMON/FESOM2_ICON_grids_easy_plot_and_interpolate.ipynb)
-- For data interpolated to regular grid: [`COMMON/Soon_not_be_created_interpolated_ocean_data_start.ipynb`](COMMON/Soon_not_be_created_interpolated_ocean_data_start.ipynb)
-- For interpolation from NEMO/FESOM/IFS/UM grid to regular grid: [`COMMON/Soon_not_be_created_interpolate_to_regular.ipynb`](COMMON/Soon_not_be_created_interpolate_to_regular.ipynb)
-- For effective parallel aggregations with dask: [`COMMON/Soon_not_be_created_parallel_aggregations_with_dask.ipynb`](COMMON/Soon_not_be_created_parallel_aggregations_with_dask.ipynb)
+- For data interpolated to regular grid: [FESOM example](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/HOWTO_destroy_FESOM_data_by_regridding.ipynb)
+- For interpolation from NEMO/FESOM/IFS/UM grid to regular grid: [WORK IN PROGRESS](COMMON/Soon_not_be_created_interpolate_to_regular.ipynb)
+- For effective parallel aggregations with dask: [FESOM example](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/HOWTO_aggregate_data_native_grid_parallel.ipynb)
 
 
 ### Individual models
@@ -72,15 +97,28 @@ Each coupled model example is located in individual folders, which are in turn s
 
 ## Examples (for now, mostly planned :) )
 * Basics (access data on the original grid, get data for one time step, open grid, have a look at the data)
+  * [NEMO (from UM_NEMO)](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/UM_NEMO/NEMO/START_HERE.ipynb)
+  * [UM](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/UM_NEMO/UM/START_HERE.ipynb)
+  * [ICON-O](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/ICON/ICON-O/STARTHERE_ICON-O.ipynb)
+  * [FESOM2 nextGESM example](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/STARTHERE_FESOM.ipynb)
+  * [IFS (from IFS-FESOM), nextGEMS example](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/IFS/STARTHERE_IFS.ipynb)
 * Regridding to a regular grid
+  * [FESOM2](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/HOWTO_destroy_FESOM_data_by_regridding.ipynb)
 * Plotting global and regional maps
+  * [FESOM2](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/HOWTO_interpolate_data_and_plot_maps_in_different_projections.ipynb)
+  * [ICON-O](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/ICON/ICON-O/HOWTO_interpolate_data_and_plot_maps_in_different_projections.ipynb)
 * Finding a point nearest to coordinates, extracting time series
 * Finding a set of points closest to a transect, plotting the transect
 * Effective, parallel aggregations
+  * [FESOM2, but will work with any](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/HOWTO_aggregate_data_native_grid_parallel.ipynb)
 * Area integral, Volume integral
+* Plot transect
+  * [FESOM2](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/HOWTO_plot_transect.ipynb)
 * Curl
 * Transport through a transect
 * Compute AMOC
+  * [ICON-O](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/ICON/ICON-O/eerie_icon_amoc-cell.ipynb)
+  * [UM-NEMO](https://github.com/eerie-project/EERIE_hackathon_2023/tree/main/UM_NEMO/AMOC)
 
 
 ## Standard variables
