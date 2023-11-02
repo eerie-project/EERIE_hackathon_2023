@@ -8,5 +8,5 @@ from .nereus import (
     create_indexes_and_distances,
     lon_lat_to_cartesian
 )
-
+from .yaml_searcher import search 
 # __all__ = ["tunnel_fast1d"]
