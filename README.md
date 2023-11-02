@@ -69,6 +69,10 @@ For now all AMIP at tco399
 
 For the prepIFS runs the gribscan .json files have been processed and the catalogues work (they live in /home/b/b382473/code/testing/catalogues/ for testing). I'm still wrangling with the MultIO output from NextGEMS.
 
+##### OBSERVATIONS
+
+Here is [README with description of observations](https://github.com/eerie-project/EERIE_hackathon_2023/tree/main/OBSERVATIONS)
+
 ## What you need to get started
 * DKRZ account for IFS/FESOM and ICON ([Science Hour presentation from Fabian Wachsmann](https://eerie-project.eu/science-hour/2023/07/27/introduction-to-levante-and-easy-gems/)
     * use python3/unstable as kernel
@@ -92,16 +96,29 @@ For the prepIFS runs the gribscan .json files have been processed and the catalo
 Each coupled model example is located in individual folders, which are in turn split into components. Begin with `START_HERE.ipynb` for each component, and then explore the notebooks from the list in the README.
 
 ## Examples (for now, mostly planned :) )
-* Basics (access data on the original grid, get data for one time step, open grid, have a look at the data) [NEMO (from UM_NEMO)](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/UM_NEMO/NEMO/START_HERE.ipynb), [UM](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/UM_NEMO/UM/START_HERE.ipynb), [ICON-O](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/ICON/ICON-O/STARTHERE_ICON-O.ipynb), [FESOM2 nextGESM example](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/STARTHERE_FESOM.ipynb), [IFS (from IFS-FESOM), nextGEMS example](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/IFS/STARTHERE_IFS.ipynb), 
+* Basics (access data on the original grid, get data for one time step, open grid, have a look at the data)
+  * [NEMO (from UM_NEMO)](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/UM_NEMO/NEMO/START_HERE.ipynb)
+  * [UM](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/UM_NEMO/UM/START_HERE.ipynb)
+  * [ICON-O](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/ICON/ICON-O/STARTHERE_ICON-O.ipynb)
+  * [FESOM2 nextGESM example](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/STARTHERE_FESOM.ipynb)
+  * [IFS (from IFS-FESOM), nextGEMS example](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/IFS/STARTHERE_IFS.ipynb)
 * Regridding to a regular grid
+  * [FESOM2](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/HOWTO_destroy_FESOM_data_by_regridding.ipynb)
 * Plotting global and regional maps
+  * [FESOM2](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/HOWTO_interpolate_data_and_plot_maps_in_different_projections.ipynb)
+  * [ICON-O](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/ICON/ICON-O/HOWTO_interpolate_data_and_plot_maps_in_different_projections.ipynb)
 * Finding a point nearest to coordinates, extracting time series
 * Finding a set of points closest to a transect, plotting the transect
 * Effective, parallel aggregations
+  * [FESOM2, but will work with any](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/HOWTO_aggregate_data_native_grid_parallel.ipynb)
 * Area integral, Volume integral
+* Plot transect
+  * [FESOM2](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/HOWTO_plot_transect.ipynb)
 * Curl
 * Transport through a transect
 * Compute AMOC
+  * [ICON-O](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/ICON/ICON-O/eerie_icon_amoc-cell.ipynb)
+  * [UM-NEMO](https://github.com/eerie-project/EERIE_hackathon_2023/tree/main/UM_NEMO/AMOC)
 
 
 ## Standard variables
