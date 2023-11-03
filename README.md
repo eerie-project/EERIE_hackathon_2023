@@ -75,6 +75,7 @@ The "ng" runs use the NextGEMS cycle 3 configuration, i.e. perpetual 2020 forcin
 Here is [README with description of observations](https://github.com/eerie-project/EERIE_hackathon_2023/tree/main/OBSERVATIONS)
 
 ## What you need to get started
+
 * DKRZ account for IFS/FESOM and ICON ([Science Hour presentation from Fabian Wachsmann](https://eerie-project.eu/science-hour/2023/07/27/introduction-to-levante-and-easy-gems/)
     * use python3/unstable as kernel
 * JASMIN for UM/NEMO, IFS/NEMO and IFS ([Science Hour presentation from Malcolm Roberts](https://eerie-project.eu/science-hour/2023/06/29/introduction-to-jasmin-and-datasets/))
@@ -83,6 +84,12 @@ Here is [README with description of observations](https://github.com/eerie-proje
 * [Use of the ESGF portal to screen and download data of the Pre-EERIE simulations](https://eerie-project.eu/science-hour/2023/09/08/the-use-of-the-esgf-portal-to-screen-and-download-data-of-the-pre-eerie-simulations/)
 
 ## How to start
+The easier way to move forward is to login to the system you going to work with (DKRZ or JASMIN) and clone this repo:
+```bash
+git clone https://github.com/eerie-project/EERIE_hackathon_2023.git
+```
+Then go to jupyterhub of [DKRZ](https://jupyterhub.dkrz.de/) or [JASMIN](https://notebooks.jasmin.ac.uk) and execute notebooks from there.
+
 
 ### General knowlege
 
