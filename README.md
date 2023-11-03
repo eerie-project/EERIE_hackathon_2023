@@ -19,15 +19,9 @@ Kindly plan your hackathon tasks with this in mind.
 
 ### Data structure
 
-Data will be available through intake catalogs. Simple way to access the data (if you on DKRZ):
-
-```python
-import intake
-cat = intake.open_catalog("https://raw.githubusercontent.com/eerie-project/intake_catalogues/main/eerie.yaml")
-data = cat['dkrz']['disk']['model-output']['icon-esm-er']['eerie-control-1950']['atmos']['gr025']['2d_monthly_mean'].to_dask()
-```
-
-Navigating through catalogs can be tricky at first, here is an [EXAMPLE OF HOW TO WORK WITH CATALOGS](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/COMMON/searching_catalogs.ipynb) 
+Data will be available through intake catalogs. It might be new experience for many, so please have a loot at:
+* [General description about data structure and how to access data through catalogs on DKRZ](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/COMMON/eerie_data-access_dkrz-disk.ipynb) 
+* Navigating through catalogs can be tricky at first, here is an example of [how to search inside some of the catalogs](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/COMMON/searching_catalogs.ipynb)
 
 ### Sumulations
 
