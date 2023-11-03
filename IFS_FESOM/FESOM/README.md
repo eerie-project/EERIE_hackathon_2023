@@ -1,6 +1,6 @@
 # FESOM data from IFS-FESOM simulations
 
-Currently for examples we use [nextGEMS Cycle 3](https://easy.gems.dkrz.de/DYAMOND/NextGEMS/index.html#id4) simulations. Later they will be updated with EERIE simulations.
+Currently for examples we use both EERIE and [nextGEMS Cycle 3](https://easy.gems.dkrz.de/DYAMOND/NextGEMS/index.html#id4) simulations. Examples for nextGEMS start with `nextGEMS` prefix. So far nextGEMS ones have much more data and with much higher frequency, but we are working on improving the situation for EERIE runs as well.
 
 ## Notebooks
 
@@ -12,5 +12,6 @@ Currently for examples we use [nextGEMS Cycle 3](https://easy.gems.dkrz.de/DYAMO
 
 ## Data collections
 
-FESOM data stored in [intake catalog](https://intake.readthedocs.io/en/latest/catalog.html). We still figuring out how to best represent infromation about stored there. 
-
+FESOM data stored in [intake catalog](https://intake.readthedocs.io/en/latest/catalog.html).
+* [Example of using catalogs](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/COMMON/eerie_data-access_dkrz-disk.ipynb)
+* [Search for catalogs](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/COMMON/searching_catalogs.ipynb)
