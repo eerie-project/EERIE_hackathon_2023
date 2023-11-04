@@ -56,6 +56,8 @@ Initial data from the full eerie-piControl simulation is available:
 | HadGEM3-GC5-EERIE-N216-ORCA025 | 1851 - 1981 |
 | HadGEM3-GC5-EERIE-N640-ORCA12  | 1851 - 1901 |
 
+CMORised data available on JASMIN in the `/gws/nopw/j04/eerie/public/data/EERIE/EERIE/MOHC/` directory. Folder structure follow CMIP convention.
+
 ##### IFS
 Data from AMIP (atmosphere-only forced with sea surface temperature (SST) and sea ice concentration (SIC)) runs is available.
 Given the purpose of the AMIP runs to study the impact of the presence of mesoscale features, the runs exist in pairs: One is forced with observed SST and SIC, taken from the OSTIA dataset (also available under #OBSERVATIONS), while in a twin experiment the observed SST *anomalies* are smoothed out with a filter the length scale of which is a multiple of the local Rossby radius of deformation. The multiple is indicated in the run ID, i.e. lr30 implies a factor of 30. For more details see #OBSERVATIONS.
