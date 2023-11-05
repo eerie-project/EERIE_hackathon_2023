@@ -108,7 +108,7 @@ Then go to jupyterhub of [DKRZ](https://jupyterhub.dkrz.de/) or [JASMIN](https:/
 
 Each coupled model example is located in individual folders, which are in turn split into components. Begin with `START_HERE.ipynb` for each component, and then explore the notebooks from the list in the README.
 
-## Examples (for now, mostly planned :) )
+## Examples
 * Basics (access data on the original grid, get data for one time step, open grid, have a look at the data)
   * [NEMO (from UM_NEMO)](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/UM_NEMO/NEMO/START_HERE.ipynb)
   * [UM](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/UM_NEMO/UM/START_HERE.ipynb)
