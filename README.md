@@ -2,6 +2,9 @@
 
 This repo contain infromation necessary for data access, and examples of data processing for 1st EERIE hackathon
 
+## Agenda
+https://events.hifis.net/event/913/timetable/?view=standard
+
 ## Data
 
 The EERIE simulations are in progress, so initially examples will be based on data from other projects, but there are already some EERIE based examples as well. We will gradually update examples with EERIE simulations when they become available.
