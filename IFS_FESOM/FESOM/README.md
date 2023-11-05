@@ -4,7 +4,7 @@ Currently for examples we use both EERIE and [nextGEMS Cycle 3](https://easy.gem
 
 ## Data access
 
-FESOM data stored in [intake catalog](https://intake.readthedocs.io/en/latest/catalog.html). Here are the links to basic examples for [native](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/STARTHERE_FESOM.ipynb) and [interpolated](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/STARTHERE_FESOM_interpolated_data.ipynb) data.
+FESOM EERIE data stored in [intake catalog](https://intake.readthedocs.io/en/latest/catalog.html). Here are the links to basic examples for [native](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/STARTHERE_FESOM.ipynb) and [interpolated](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/IFS_FESOM/FESOM/STARTHERE_FESOM_interpolated_data.ipynb) data.
 
 In short this should work to open the data:
 ```python
