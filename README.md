@@ -26,7 +26,7 @@ Data will be available through intake catalogs. It might be new experience for m
 ### Sumulations
 Current overview of simulations:
 
-<img width="400" alt="Screenshot 2023-11-05 at 19 27 32" src="https://github.com/eerie-project/EERIE_hackathon_2023/assets/3407313/ab2dee89-a890-431d-87ff-c7135c1273a9">
+<img width="651" alt="Screenshot 2023-11-05 at 19 31 37" src="https://github.com/eerie-project/EERIE_hackathon_2023/assets/3407313/eb5669cc-ee21-42dc-91fe-bd7e700b2a6a">
 
 More detailed information about the availability of data on different grids and time frequencies can be found in the readme of each individual model's subfolder.
 
