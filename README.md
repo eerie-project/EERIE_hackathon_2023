@@ -24,6 +24,11 @@ Data will be available through intake catalogs. It might be new experience for m
 * Navigating through catalogs can be tricky at first, here is an example of [how to search inside some of the catalogs](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/COMMON/searching_catalogs.ipynb)
 
 ### Sumulations
+Current overview of simulations:
+
+<img width="400" alt="Screenshot 2023-11-05 at 19 23 20" src="https://github.com/eerie-project/EERIE_hackathon_2023/assets/3407313/946c28dc-e57d-4199-86db-55083ab33409">
+
+More detailed information about the availability of data on different grids and time frequencies can be found in the readme of each individual model's subfolder.
 
 #### IFS/FESOM
 
