@@ -49,9 +49,7 @@ More detailed information about the availability of data on different grids and 
 * eerie-control-1950 - 10 km ocean and atmosphere
   * cat['dkrz']['disk']['model-output']['icon-esm-er']['eerie-control-1950']
 
-##### IFS/NEMO
-
-##### UM/NEMO
+#### UM/NEMO
 
 Initial data from the full eerie-piControl simulation is available:
 
@@ -63,7 +61,7 @@ Initial data from the full eerie-piControl simulation is available:
 
 CMORised data available on JASMIN in the `/gws/nopw/j04/eerie/public/data/EERIE/EERIE/MOHC/` directory. Folder structure follow CMIP convention.
 
-##### IFS
+#### IFS
 Data from AMIP (atmosphere-only forced with sea surface temperature (SST) and sea ice concentration (SIC)) runs is available.
 Given the purpose of the AMIP runs to study the impact of the presence of mesoscale features, the runs exist in pairs: One is forced with observed SST and SIC, taken from the OSTIA dataset (also available under #OBSERVATIONS), while in a twin experiment the observed SST *anomalies* are smoothed out with a filter the length scale of which is a multiple of the local Rossby radius of deformation. The multiple is indicated in the run ID, i.e. lr30 implies a factor of 30. For more details see #OBSERVATIONS.
 
@@ -77,7 +75,7 @@ Given the purpose of the AMIP runs to study the impact of the presence of mesosc
 The "hist" runs are historical runs with time-dependent forcing based on IFS CY48R1.1, including some new EERIE source updates.
 The "ng" runs use the NextGEMS cycle 3 configuration, i.e. perpetual 2020 forcing (except for SST & SIC).
 
-##### OBSERVATIONS
+#### OBSERVATIONS
 
 Here is [README with description of observations](https://github.com/eerie-project/EERIE_hackathon_2023/tree/main/OBSERVATIONS)
 
