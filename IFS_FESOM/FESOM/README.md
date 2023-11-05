@@ -9,6 +9,7 @@ FESOM EERIE data stored in [intake catalog](https://intake.readthedocs.io/en/lat
 In short this should work to open the data:
 ```python
 import intake
+cat = intake.open_catalog("https://raw.githubusercontent.com/eerie-project/intake_catalogues/main/eerie.yaml")
 data_025 = cat['dkrz.disk.model-output.ifs-fesom2-sr.eerie-control-1950.ocean.gr025']['daily'].to_dask() # for daily interpolated data
 data_native = cat['dkrz.disk.model-output.ifs-fesom2-sr.eerie-control-1950.ocean.gr025']['daily'].to_dask() # for daily data on native grid
 ```
