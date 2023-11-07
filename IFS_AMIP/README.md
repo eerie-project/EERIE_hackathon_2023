@@ -2,6 +2,8 @@
 
 For this hackathon we make available four IFS-AMIP simulations run at ECMWF, at a tco399 resolution (approximately 28km). For ease of the analysis, the data provided for the hackathon has been regridded to a 0.25 degree regular grid.
 
+To explore which variables are available for which experiments and streams, the *metadata* directory contains searchable \<exp\>__\<stream\> .csv files listing the metadata for each variable. Additional information on ECMWF variables is available in the [ECMWF Parameter Database](https://codes.ecmwf.int/grib/param-db/) which can be searched by short name, GRIB code, units etc.
+
 AMIP runs are atmosphere-only runs, withtout an ocean model, forced with sea surface temperature (SST) and sea ice concentration (SIC).
 Given the purpose of the AMIP runs to study the impact of the presence of mesoscale features, the runs exist in pairs: One is forced with observed SST and SIC, taken from the OSTIA dataset (also available under #OBSERVATIONS), while in a twin experiment the observed SST *anomalies* are smoothed out with a filter the length scale of which is a multiple of the local Rossby radius of deformation. The multiple is indicated in the run ID, i.e. lr30 implies a factor of 30. For more details see #OBSERVATIONS.
 
