@@ -63,7 +63,7 @@ Initial data from the full eerie-piControl simulation is available:
 | HadGEM3-GC5-EERIE-N216-ORCA025 | cy021    | 1851 - 1981 |
 | HadGEM3-GC5-EERIE-N640-ORCA12  | cx993    | 1851 - 1901 |
 
-CMORised data available on JASMIN in the `/gws/nopw/j04/eerie/public/data/EERIE/EERIE/MOHC/` directory. Folder structure follow CMIP convention.
+CMORised atmosphere data is available on JASMIN in the `/gws/nopw/j04/eerie/public/data/EERIE/` directory.  The folder structure follows the CMIP conventions. The ocean data has not been CMORised but the raw ocean and seaice netCDF files have been included in the same directory structure (regridded and one variable per file).
 
 #### IFS
 Data from AMIP (atmosphere-only forced with sea surface temperature (SST) and sea ice concentration (SIC)) runs is available.
