@@ -4,9 +4,10 @@ Initial data from the full eerie-piControl simulation is available for all three
 
 ## Notebooks
 
-* START_HERE.ipynb - simple, basic example, without a lot of explanations. Access to data, plot
+* START_HERE.ipynb - simple, basic example, without a lot of explanations. Access to data, plotting via Iris
+* START_HERExarray.ipynb - simple, basic example, without a lot of explanations. Access to data, plotting via Xarray
 
 ## Data collections
 
-The data has not been catalogued yet. 
+The examples here load the files directly. Please see the intake catalogue example in the `UM_NEMO` directory in the level above for an example catalogue.
 
