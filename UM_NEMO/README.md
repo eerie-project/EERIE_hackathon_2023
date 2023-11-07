@@ -5,9 +5,9 @@ Initial data from the full eerie-piControl simulation is available for all three
 ## Sub-directories
 
 * AMOC - examples showing how to load and plot the calculated AMOC diagnostics with Iris.
-* GRID025 - exmaples showing how to load and plot the regridded ocean data and the tracked eddies.
+* GRID025 - examples showing how to load and plot the regridded ocean data and the tracked eddies.
 * NEMO - examples of how to load and plot the NEMO ocean data.
-* UM - exmaples of how to load and plot the UM atmosphere data using Iris and Xarray.
+* UM - examples of how to load and plot the UM atmosphere data using Iris and Xarray.
   
 ## Notebooks
 
