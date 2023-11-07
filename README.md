@@ -57,11 +57,11 @@ More detailed information about the availability of data on different grids and 
 
 Initial data from the full eerie-piControl simulation is available:
 
-| Model                          | Data        |
-|--------------------------------|-------------|
-| HadGEM3-GC5-EERIE-N96-ORCA1    | 1851 - 2081 |
-| HadGEM3-GC5-EERIE-N216-ORCA025 | 1851 - 1981 |
-| HadGEM3-GC5-EERIE-N640-ORCA12  | 1851 - 1901 |
+| Model                          | Suite ID | Data        |
+|--------------------------------|----------|-------------|
+| HadGEM3-GC5-EERIE-N96-ORCA1    | cy163    | 1851 - 2081 |
+| HadGEM3-GC5-EERIE-N216-ORCA025 | cy021    | 1851 - 1981 |
+| HadGEM3-GC5-EERIE-N640-ORCA12  | cx993    | 1851 - 1901 |
 
 CMORised data available on JASMIN in the `/gws/nopw/j04/eerie/public/data/EERIE/EERIE/MOHC/` directory. Folder structure follow CMIP convention.
 
