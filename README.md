@@ -100,6 +100,8 @@ git clone https://github.com/eerie-project/EERIE_hackathon_2023.git
 ```
 Then go to jupyterhub of [DKRZ](https://jupyterhub.dkrz.de/) or [JASMIN](https://notebooks.jasmin.ac.uk) and execute notebooks from there.
 
+To log into JASMIN to clone the repository, you can either use [SSH](https://help.jasmin.ac.uk/article/187-login) or you can use the [JASMIN jupyterhub](https://notebooks.jasmin.ac.uk) and go to Launcher (blue cross) and then choose a new Terminal.
+
 
 ### General knowlege
 
