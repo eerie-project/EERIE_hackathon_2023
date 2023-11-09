@@ -47,12 +47,13 @@ More detailed information about the availability of data on different grids and 
 
 #### ICON
 
-##### Test data
+##### Test data (not used in hackathon)
 * nextGEMS Cycle 2 simulations Description of simulations: https://easy.gems.dkrz.de/DYAMOND/NextGEMS/index.html#id1
 
 ##### EERIE simulations
-* eerie-control-1950 - 10 km ocean and atmosphere
+* eerie-control-1950 - 5 km ocean and 10km atmosphere
   * cat['dkrz']['disk']['model-output']['icon-esm-er']['eerie-control-1950']
+  * Please note that for the first 7 years (model years 2002-2008), the 3d daily atmosphere (not 2d) are instantaneous values. This has been rectified to daily mean values from model year 2009 onwards. 
 
 #### UM/NEMO
 
