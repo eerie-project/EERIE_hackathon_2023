@@ -16,6 +16,23 @@ source /work/mh0256/m300466/miniconda3/bin/activate
 mamba create -n pyeddytracker_intake python=3.10
 conda activate pyeddytracker_intake
 cd /work/mh0256/m300466/pyeddytracker/
+
+#Create a requirements text file
+vi requirements.txt
+matplotlib
+opencv-python
+pint
+polygon3
+pyyaml
+requests
+scipy
+zarr
+netCDF4
+numpy
+numba
+
+
+#Install the required packages
 python -m pip install --upgrade pip
 pip install flake8 pytest pytest-cov
 pip install -r requirements.txt
