@@ -26,7 +26,7 @@ Data will be available through intake catalogs. It might be new experience for m
 * [General description about data structure and how to access data through catalogs on DKRZ](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/COMMON/eerie_data-access_dkrz-disk.ipynb) 
 * Navigating through catalogs can be tricky at first, here is an example of [how to search inside some of the catalogs](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/COMMON/searching_catalogs.ipynb)
 
-### Sumulations
+### Simulations
 Current overview of simulations:
 
 <img width="605" alt="Screenshot 2023-11-08 at 22 06 07" src="https://github.com/eerie-project/EERIE_hackathon_2023/assets/3407313/9798565c-9dee-4fa0-aef2-aee90afe9f18">
