@@ -1,0 +1,7 @@
+# Finding path to which data is located so you can port it into notebook and use py-eddy-tracker
+# Here, py-eddy-tracker needs file name (netcdf) in order to process the data. It can't use xarray yet, or more of I don't know how to get it to use xarray. 
+
+module use /work/k20200/k202134/hsm-tools/outtake/module/
+module load hsm-tools/unstable
+query_yaml.py -c https://raw.githubusercontent.com/eerie-project/intake_catalogues/main/eerie.yaml dkrz disk model-output icon-esm-er eerie-control-1950 ocean gr025 2d_daily_mean --var ssh --cdo
+
