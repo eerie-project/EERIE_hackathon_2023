@@ -1,51 +1,6 @@
-,paramId,dataType,numberOfPoints,typeOfLevel,stepUnits,stepType,gridType,shortName,units,name,cfVarName,missingValue,totalNumber,NV,gridDefinitionDescription
-10si,207,fcmean,1038240,surface,1,instant,regular_ll,10si,m s**-1,10 metre wind speed,si10,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-10u,165,fcmean,1038240,surface,1,instant,regular_ll,10u,m s**-1,10 metre U wind component,u10,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-10v,166,fcmean,1038240,surface,1,instant,regular_ll,10v,m s**-1,10 metre V wind component,v10,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-2d,168,fcmean,1038240,surface,1,instant,regular_ll,2d,K,2 metre dewpoint temperature,d2m,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-2t,167,fcmean,1038240,surface,1,instant,regular_ll,2t,K,2 metre temperature,t2m,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-cape,59,fcmean,1038240,surface,1,instant,regular_ll,cape,J kg**-1,Convective available potential energy,cape,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-ci,31,fcmean,1038240,surface,1,instant,regular_ll,ci,(0 - 1),Sea ice area fraction,siconc,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-cprate,172143,fcmean,1038240,surface,1,instant,regular_ll,cprate,m s**-1,Mean convective precipitation rate,cprate,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-erate,172182,fcmean,1038240,surface,1,instant,regular_ll,erate,m of water s**-1,Evaporation,erate,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-ewssra,172180,fcmean,1038240,surface,1,instant,regular_ll,ewssra,N m**-2,East-West surface stress rate of accumulation,ewssra,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-fal,243,fcmean,1038240,surface,1,instant,regular_ll,fal,(0 - 1),Forecast albedo,fal,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-iews,229,fcmean,1038240,surface,1,instant,regular_ll,iews,N m**-2,Instantaneous eastward turbulent surface stress,iews,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-inss,230,fcmean,1038240,surface,1,instant,regular_ll,inss,N m**-2,Instantaneous northward turbulent surface stress,inss,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-lcc,186,fcmean,1038240,surface,1,instant,regular_ll,lcc,(0 - 1),Low cloud cover,lcc,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-lmlt,228008,fcmean,1038240,surface,1,instant,regular_ll,lmlt,K,Lake mix-layer temperature,lmlt,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-mlsprt,172142,fcmean,1038240,surface,1,instant,regular_ll,mlsprt,m s**-1,Mean large-scale precipitation rate,mlsprt,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-mn2t24,52,fcmean,1038240,surface,1,instant,regular_ll,mn2t24,K,Minimum temperature at 2 metres in the last 24 hours,mn2t24,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-mrort,172205,fcmean,1038240,surface,1,instant,regular_ll,mrort,m s**-1,Mean runoff rate,mrort,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-msdr,172189,fcmean,1038240,surface,1,instant,regular_ll,msdr,s s**-1,Mean sunshine duration rate,msdr,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-msdsrf,172169,fcmean,1038240,surface,1,instant,regular_ll,msdsrf,W m**-2,Mean surface downward solar radiation flux,msdsrf,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-msdtrf,172175,fcmean,1038240,surface,1,instant,regular_ll,msdtrf,W m**-2,Mean surface downward thermal radiation flux,msdtrf,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-msl,151,fcmean,1038240,surface,1,instant,regular_ll,msl,Pa,Mean sea level pressure,msl,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-mslhfl,172147,fcmean,1038240,surface,1,instant,regular_ll,mslhfl,W m**-2,Mean surface latent heat flux,mslhfl,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-msnsrf,172176,fcmean,1038240,surface,1,instant,regular_ll,msnsrf,W m**-2,Mean surface net solar radiation flux,msnsrf,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-msntrf,172177,fcmean,1038240,surface,1,instant,regular_ll,msntrf,W m**-2,Mean surface net thermal radiation flux,msntrf,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-msror,172008,fcmean,1038240,surface,1,instant,regular_ll,msror,m of water equivalent s**-1,Mean surface runoff rate,msror,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-msshfl,172146,fcmean,1038240,surface,1,instant,regular_ll,msshfl,W m**-2,Mean surface sensible heat flux,msshfl,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-mssror,172009,fcmean,1038240,surface,1,instant,regular_ll,mssror,m of water equivalent s**-1,Mean sub-surface runoff rate,mssror,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-mtnsrf,172178,fcmean,1038240,surface,1,instant,regular_ll,mtnsrf,W m**-2,Mean top net solar radiation flux,mtnsrf,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-mtntrf,172179,fcmean,1038240,surface,1,instant,regular_ll,mtntrf,W m**-2,Mean top net thermal radiation flux,mtntrf,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-mtsfr,172144,fcmean,1038240,surface,1,instant,regular_ll,mtsfr,m of water equivalent s**-1,Mean total snowfall rate,mtsfr,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-mx2t24,51,fcmean,1038240,surface,1,instant,regular_ll,mx2t24,K,Maximum temperature at 2 metres in the last 24 hours,mx2t24,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-nsssra,172181,fcmean,1038240,surface,1,instant,regular_ll,nsssra,N m**-2,North-South surface stress rate of accumulation,nsssra,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-sd,141,fcmean,1038240,surface,1,instant,regular_ll,sd,m of water equivalent,Snow depth,sd,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-skt,235,fcmean,1038240,surface,1,instant,regular_ll,skt,K,Skin temperature,skt,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-soira,172212,fcmean,1038240,surface,1,instant,regular_ll,soira,W m**-2,Solar insolation rate of accumulation,soira,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-sst,34,fcmean,1038240,surface,1,instant,regular_ll,sst,K,Sea surface temperature,sst,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-stl1,139,fcmean,1038240,depthBelowLandLayer,1,instant,regular_ll,stl1,K,Soil temperature level 1,stl1,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-stl2,170,fcmean,1038240,depthBelowLandLayer,1,instant,regular_ll,stl2,K,Soil temperature level 2,stl2,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-stl3,183,fcmean,1038240,depthBelowLandLayer,1,instant,regular_ll,stl3,K,Soil temperature level 3,stl3,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-stl4,236,fcmean,1038240,depthBelowLandLayer,1,instant,regular_ll,stl4,K,Soil temperature level 4,stl4,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-swvl1,39,fcmean,1038240,depthBelowLandLayer,1,instant,regular_ll,swvl1,m**3 m**-3,Volumetric soil water layer 1,swvl1,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-swvl2,40,fcmean,1038240,depthBelowLandLayer,1,instant,regular_ll,swvl2,m**3 m**-3,Volumetric soil water layer 2,swvl2,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-swvl3,41,fcmean,1038240,depthBelowLandLayer,1,instant,regular_ll,swvl3,m**3 m**-3,Volumetric soil water layer 3,swvl3,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-swvl4,42,fcmean,1038240,depthBelowLandLayer,1,instant,regular_ll,swvl4,m**3 m**-3,Volumetric soil water layer 4,swvl4,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-tcc,164,fcmean,1038240,surface,1,instant,regular_ll,tcc,(0 - 1),Total cloud cover,tcc,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-tciw,79,fcmean,1038240,surface,1,instant,regular_ll,tciw,kg m**-2,Total column cloud ice water,tciw,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-tclw,78,fcmean,1038240,surface,1,instant,regular_ll,tclw,kg m**-2,Total column cloud liquid water,tclw,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-tcwv,137,fcmean,1038240,surface,1,instant,regular_ll,tcwv,kg m**-2,Total column vertically-integrated water vapour,tcwv,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
-tprate,172228,fcmean,1038240,surface,1,instant,regular_ll,tprate,m s**-1,Mean total precipitation rate,tprate,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
+,paramId,dataType,numberOfPoints,typeOfLevel,stepUnits,stepType,gridType,shortName,units,name,cfName,cfVarName,missingValue,totalNumber,NV,gridDefinitionDescription
+q,133,fc,1038240,isobaricInhPa,1,instant,regular_ll,q,kg kg**-1,Specific humidity,specific_humidity,q,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
+t,130,fc,1038240,isobaricInhPa,1,instant,regular_ll,t,K,Temperature,air_temperature,t,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
+u,131,fc,1038240,isobaricInhPa,1,instant,regular_ll,u,m s**-1,U component of wind,eastward_wind,u,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
+v,132,fc,1038240,isobaricInhPa,1,instant,regular_ll,v,m s**-1,V component of wind,northward_wind,v,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
+z,129,fc,1038240,isobaricInhPa,1,instant,regular_ll,z,m**2 s**-2,Geopotential,geopotential,z,3.4028234663852886e+38,1,0,Latitude/Longitude Grid
