@@ -103,6 +103,16 @@ Then go to jupyterhub of [DKRZ](https://jupyterhub.dkrz.de/) or [JASMIN](https:/
 
 To login to JASMIN to clone the repository, you can either use [SSH](https://help.jasmin.ac.uk/article/187-login) or you can use the [JASMIN jupyterhub](https://notebooks.jasmin.ac.uk) and go to Launcher (blue cross) and then choose a new Terminal.
 
+### dkrz jupyterhub https://jupyterhub.dkrz.de/
+
+* account: bk1377 (make sure you are a member of it)
+* profile: at least 50GB memory
+* 20gb home. more data can be temporarily saved in /scratch/b/BNUMBER . if your account starts with m use m/MNUMBER
+* server runs for specific amount of time, you can close the browser, the server continues. Unless you stop it via the hub control panel.
+
+### jasmin notebook service https://notebooks.jasmin.ac.uk
+
+stops when there is no activity
 
 ### General knowlege
 
