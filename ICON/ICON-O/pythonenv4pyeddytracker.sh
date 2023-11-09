@@ -6,7 +6,6 @@ module load git
 cd /work/mh0256/m300466/
 git clone https://github.com/AntSimi/py-eddy-tracker pyeddytracker/
 source /work/mh0256/m300466/miniconda3/bin/activate
-conda activate /work/mh0256/m300466/conda-envs/py-eddy-tracker
 cd /work/mh0256/m300466/pyeddytracker
 pip install --target=/work/mh0256/m300466/pyeddytracker/lib/python3.10/site-packages --prefix=/work/mh0256/m300466/pyeddytracker pyEddyTracker
 
