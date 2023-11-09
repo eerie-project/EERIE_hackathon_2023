@@ -59,11 +59,11 @@ More detailed information about the availability of data on different grids and 
 
 Initial data from the full eerie-piControl simulation is available:
 
-| Model                          | Suite ID | Data        |
-|--------------------------------|----------|-------------|
-| HadGEM3-GC5-EERIE-N96-ORCA1    | cy163    | 1851 - 2081 |
-| HadGEM3-GC5-EERIE-N216-ORCA025 | cy021    | 1851 - 1981 |
-| HadGEM3-GC5-EERIE-N640-ORCA12  | cx993    | 1851 - 1901 |
+| Model                          | Suite ID | Atmos Data  | Ocean Data  |
+|--------------------------------|----------|-------------|-------------|
+| HadGEM3-GC5-EERIE-N96-ORCA1    | cy163    | 1851 - 2081 |             |
+| HadGEM3-GC5-EERIE-N216-ORCA025 | cy021    | 1851 - 1981 | 1851 - 1900 |
+| HadGEM3-GC5-EERIE-N640-ORCA12  | cx993    | 1851 - 1901 | 1851 - 1890 |
 
 CMORised atmosphere data is available on JASMIN in the `/gws/nopw/j04/eerie/public/data/EERIE/` directory.  The folder structure follows the CMIP conventions. The ocean data has not been CMORised but the raw ocean and seaice netCDF files have been included in the same directory structure (regridded and one variable per file).
 
