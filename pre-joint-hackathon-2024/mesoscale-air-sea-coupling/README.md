@@ -2,10 +2,10 @@
 
 There's a strong spatio-temporal scale dependency of air-sea coupling, and a myraid of methods to separate those scales. Here, we take a few examples of air-sea coupling coefficients and produce global maps of them for full fields, smoothed fields and high-pass filtered fields. 
 
-## [Spatial filters](Spatial_Filters/README.md)
+## [Spatial filters](mesoscale-air-sea-coupling/Spatial_Filters/README.md)
 We can use spatial filters to tease apart the spatial scale dependency of air-sea coupling coefficients. Here, we provide examples of using 3 different filtering techniques.
 
-## Coupling coefficients with [ICON](ICON/README.md) and [IFS/FESOM](IFS-FESOM/README.md)
+## Coupling coefficients with [ICON](mesoscale-air-sea-coupling/ICON/README.md) and [IFS/FESOM](mesoscale-air-sea-coupling/IFS-FESOM/README.md)
 Coupling coefficients based on regression are used for measuring strength of air-sea coupling (Renault et al., 2016), particularly for thermal feedback (TFB) and current feedback (CFB). Additionally, other quantities can illustrate air-sea coupling and associated mesoscale features/implications. 
 
 TFB: 
@@ -28,8 +28,8 @@ Other quantities:
 
 ## Coupling coefficients for various models (intermodel comparison)
 
-- [X] [ICON](ICON/README.md)
-- [ ] [IFS/FESOM](IFS-FESOM/README.md) in progress
+- [X] [ICON](mesoscale-air-sea-coupling/ICON/README.md)
+- [ ] [IFS/FESOM](mesoscale-air-sea-coupling/IFS-FESOM/README.md) in progress
 - [ ] HadGEM = UM/NEMO
 - [ ] IFS/NEMO
 - [ ] Verification with observations/reanalysis

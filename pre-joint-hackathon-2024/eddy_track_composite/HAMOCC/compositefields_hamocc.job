@@ -1,0 +1,39 @@
+#!/bin/sh
+#SBATCH --account=mh0256
+#SBATCH --job-name=composite
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=composite_%j.log
+#SBATCH --error=composite_%j.log
+#SBATCH --exclusive
+#SBATCH --time=08:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need varname"
+    exit 1      #exit out of program
+fi
+if [ -z "$2" ] ; then
+    echo "invalid number of parameters: need eddy type"
+    exit 1      #exit out of program
+fi
+if [ -z "$3" ] ; then
+    echo "invalid number of parameters: need rgn"
+    exit 1      #exit out of program
+fi
+
+varname=$1
+eddy_type=$2
+rgn=$3
+
+module load python3
+
+if [ $varname == 'zos' ]; then
+   python eddy_fromfile_alongtrack_dm_hamocc.py ${eddy_type} ${rgn}
+else
+   python othereddyfields_fromfile_alongtrack_dm_hamocc.py ${varname} ${eddy_type} ${rgn}
+fi
+
+

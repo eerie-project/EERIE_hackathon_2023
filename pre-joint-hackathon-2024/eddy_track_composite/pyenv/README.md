@@ -1,5 +1,5 @@
 # Python environment for py-eddy-tracker
-We learnt from the EERIE hackathon in Nov. 2023, that it takes quite some effort of to setup the python environment for usage with py-eddy-tracker. Instructions on how to [build your own environment](#build-your-own-python-environment) or [use someone else's working environment](#using-someone-elses-working-python-environment) can be found [here](https://pad.gwdg.de/s/UPtvMmBFw).  A working [conda environment list](eddyenv_dap_v1.txt) on Levante is also provided in case program versions cause some issues. 
+We learnt from the EERIE hackathon in Nov. 2023, that it takes quite some effort of to setup the python environment for usage with py-eddy-tracker. Instructions on how to [build your own environment](#build-your-own-python-environment) or [use someone else's working environment](#using-someone-elses-working-python-environment) or '[module load](#use-module-load-for-the-environment)' a pre-made environment are shown below.  A working [conda environment list](eddyenv_dap_v1.txt) on Levante is also provided in case program versions cause some issues. 
 
 
 ## Build your own python environment
@@ -63,10 +63,26 @@ pip install matplotlib==3.7.1
 ```
 
 ## Using someone else's working python environment
+Locate where your python environments reside. E.g. env resides in 
+```
+pyenvdir= ~/python_environments/eddyenvBeta/share/jupyter/kernels/python3
+```
+
 Go to where your folder that points to where `kernel.json` files are collected and used for visibility as an environment on jupyterhub. This may be in your $HOME directory, or for some of us, it is in ~/.local/share/jupyter/kernels
 
 Perform a symbolic link to where this environment resides from that folder.
 
 ```
-ln -s /home/m/m300466/.local/share/jupyter/kernels/eddyenv_dap_v1
+cd ~/.local/share/jupyter/kernels
+ln -s ${pyenvdir}
+```
+
+## Use module load for the environment
+This would be the easiest route for users who do not want to change their python environment but would like to use py-eddy-tracker with xarray and dask, GCM filters, +++ . 
+
+```bash
+module use /work/k20200/k202134/hsm-tools/outtake/module
+module rm python3
+module load python3/hamburg-hackathon-eddyenv
+python -m ipykernel install --name eddyenv-HH-hackathon --user
 ```
