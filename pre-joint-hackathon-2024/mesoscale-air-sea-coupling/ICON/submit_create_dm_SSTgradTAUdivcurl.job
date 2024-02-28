@@ -1,0 +1,44 @@
+#!/bin/sh
+#SBATCH --account=mh0256
+#SBATCH --job-name=SSTgrad_TAUdivcurl
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=SSTgrad_TAUdivcurl_%j.log
+#SBATCH --error=SSTgrad_TAUdivcurl_%j.log
+#SBATCH --exclusive
+#SBATCH --time=08:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need year"
+    exit 1      #exit out of program
+fi
+if [ -z "$2" ] ; then
+    echo "invalid number of parameters: need month"
+    exit 1      #exit out of program
+fi
+
+yr=$1
+mth=$2
+
+outdir=/work/mh0287/m300466/EERIE/erc1011/SSTgrad_TAUdivcurl
+test -d ${outdir}/downSSTgrad || mkdir -p ${outdir}/downSSTgrad
+test -d ${outdir}/downSSTgrad/dm || mkdir -p ${outdir}/downSSTgrad/dm
+test -d ${outdir}/crossSSTgrad || mkdir -p ${outdir}/crossSSTgrad
+test -d ${outdir}/crossSSTgrad/dm || mkdir -p ${outdir}/crossSSTgrad/dm
+test -d ${outdir}/taudiv || mkdir -p ${outdir}/taudiv
+test -d ${outdir}/taudiv/dm || mkdir -p ${outdir}/taudiv/dm
+test -d ${outdir}/taucurl || mkdir -p ${outdir}/taucurl
+test -d ${outdir}/taucurl/dm || mkdir -p ${outdir}/taucurl/dm
+
+python create_daily_SSTgrad_TAUdivcurl_erc1011.py ${yr} ${mth}
+python create_daily_taucurl_erc1011.py ${yr} ${mth}
+
+#outdir=/work/mh0287/m300466/EERIE/erc1011/
+#test -d ${outdir}/winddiv || mkdir -p ${outdir}/winddiv
+#test -d ${outdir}/winddiv/dm || mkdir -p ${outdir}/winddiv/dm
+#test -d ${outdir}/windcurl || mkdir -p ${outdir}/windcurl
+#test -d ${outdir}/windcurl/dm || mkdir -p ${outdir}/windcurl/dm
+#python create_daily_winddivcurl_erc1011.py ${yr} ${mth}

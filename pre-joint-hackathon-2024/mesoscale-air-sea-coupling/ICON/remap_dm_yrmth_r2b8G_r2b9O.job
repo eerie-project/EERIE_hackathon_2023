@@ -1,0 +1,78 @@
+#!/bin/bash
+#SBATCH --account=mh0256
+#SBATCH --job-name=remap_AtoO
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=remap_AtoO.run.%j.o
+#SBATCH --error=remap_AtoO.run.%j.o
+#SBATCH --exclusive
+#SBATCH --time=08:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need varname"
+    exit 1      #exit out of program
+fi
+if [ -z "$2" ] ; then
+    echo "invalid number of parameters: need year"
+    exit 1      #exit out of program
+fi
+if [ -z "$3" ] ; then
+    echo "invalid number of parameters: need month"
+    exit 1      #exit out of program
+fi
+varname=$1
+yyyy=$2
+mm=$3
+
+#varname=uas
+#varname=vas
+
+module load cdo
+find_files=/home/m/m300466/pyfuncs/find_files
+
+expid=erc1011
+#catalog=/work/bm1344/k203123/icon-mpim/ec1-5/experiments/erc1011/scripts/erc1011.json
+#catalog=/home/m/m300466/EERIE/intake/erc1011_200201-200403.json
+catalog=/home/m/m300466/EERIE/intake/erc1011_200201-200812.json
+freqm=dm
+srcgrid=/pool/data/ICON/grids/public/mpim/0033/icon_grid_0033_R02B08_G.nc
+#srcgrid=/pool/data/ICON/grids/public/mpim/0016/icon_grid_0016_R02B09_O.nc
+remapwgt=/work/mh0256/m300466/DPP/weights/r2b8G_to_r2b9O_yconremapweights.nc
+targetgrid=/work/mh0256/m300466/DPP/grid/ssh_r2b9O_gridexample.nc
+#targetgrid=/work/mh0256/m300466/DPP/grid/temp_IFS25invertlat_MR_gridexample.nc
+fxgrid=/pool/data/ICON/oes/input/r0005/OceanOnly_IcosSymmetric_4932m_rotatedZ37d_modified_srtm30_1min/L72/exp.ocean_era51h_zstar_r2b9_23075-ERA_fx_20100101T000200Z.nc
+
+# provide intake find files
+test -f find_files || ln -s /home/m/m300466/pyfuncs/find_files .
+
+#Filename and location for interpolated data
+outdir=/work/mh0287/m300466/EERIE/${expid}
+
+test -d ${outdir}/${varname} || mkdir -p ${outdir}/${varname}
+test -d ${outdir}/${varname}/${freqm} || mkdir -p ${outdir}/${varname}/${freqm}
+
+#for yyyy in $(seq 2002 2008); 
+#do
+#  for mm in $(seq 1 12);
+#  do
+    yyyyp=` expr ${yyyy} + 1 `
+    mmp=` expr ${mm} + 1 `
+    if [ $mm -lt 10 ]; then mm='0'$mm; else mm=$mm; fi
+    if [ $mmp -lt 10 ]; then mmp='0'$mmp; else mmp=$mmp; fi
+    sdate=${yyyy}'-'${mm}'-02'
+    if [ $mm -gt 11 ]; then
+      edate=${yyyyp}'-01-01'
+      daterng=${yyyy}'12'
+    else
+      edate=${yyyy}'-'${mmp}'-01'
+      daterng=${yyyy}${mm}
+    fi
+    varfilelist=`./find_files --catalog_file=${catalog} ${varname} ${expid} --level_type=2d --frequency=1day --time_range ${sdate} ${edate}T23 `
+    varfile=${outdir}/${varname}/${freqm}/${expid}_${varname}_${freqm}_${daterng}_r2b9O.nc
+    cdo -L -P 128 -remap,${targetgrid},${remapwgt} -shifttime,-12hour -setgrid,${srcgrid} -select,name=${varname} [ ${varfilelist} ] ${varfile}
+#  done
+#done
+

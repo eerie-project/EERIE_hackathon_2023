@@ -1,0 +1,83 @@
+#!/bin/sh
+#SBATCH --account=mh0256
+#SBATCH --job-name=smooth2d
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=smooth2d_%j.log
+#SBATCH --error=smooth2d_%j.log
+#SBATCH --exclusive
+#SBATCH --time=08:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+
+# Workaround for SLURM bug in chained jobs
+SLURM_JOB_NAME=ncatted
+sbatch () {
+    unset SLURM_MEM_PER_CPU
+    command sbatch "$@"
+}
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need varname"
+    exit 1      #exit out of program
+fi
+if [ -z "$2" ] ; then
+    echo "invalid number of parameters: need radius of smoothing (deg)"
+    exit 1      #exit out of program
+fi
+if [ -z "$3" ] ; then
+    echo "invalid number of parameters: need year"
+    exit 1      #exit out of program
+fi
+if [ -z "$4" ] ; then
+    echo "invalid number of parameters: need month"
+    exit 1      #exit out of program
+fi
+
+varname=$1
+smdeg=$2
+yyyy=$3
+mth=$4
+
+module load cdo
+
+##############################################################################################
+
+expid=erc1011
+freqm=dm
+rmn=30
+if [ $expid == 'erc1011' ]; then
+  nts=2557
+  daterng='20020101-20081231'
+fi
+
+datadir=/work/bm1344/k203123/reg25/${expid}/30dayrunmean/${varname}
+smoutdir=${datadir}/${smdeg}deg
+test -d ${smoutdir} || mkdir -p ${smoutdir}
+
+##############################################################################################
+
+if [ $mth -lt 10 ]; then mm='0'$mth; else mm=$mth; fi
+
+if [ $varname == to ] || [ $varname == so ]; then
+   zidx=1
+   file2sm=${datadir}/${expid}_${varname}_${zidx}_${freqm}_${daterng}_IFS25_${rmn}dayrmn.nc
+   smfile=${smoutdir}/${expid}_${varname}_${zidx}_${freqm}_${yyyy}${mm}_IFS25_${rmn}dayrmn_sm${smdeg}deg.nc
+   hpfile=${smoutdir}/${expid}_${varname}_${zidx}_${freqm}_${yyyy}${mm}_IFS25_${rmn}dayrmn_hp${smdeg}deg.nc
+else
+   file2sm=${datadir}/${expid}_${varname}_${freqm}_${daterng}_IFS25_${rmn}dayrmn.nc
+   smfile=${smoutdir}/${expid}_${varname}_${freqm}_${yyyy}${mm}_IFS25_${rmn}dayrmn_sm${smdeg}deg.nc
+   hpfile=${smoutdir}/${expid}_${varname}_${freqm}_${yyyy}${mm}_IFS25_${rmn}dayrmn_hp${smdeg}deg.nc
+fi
+
+## Perform smoothing
+if [ ${smdeg} -ge 50 ]; then
+   cdo -L -v -P 128 -smooth,radius=${smdeg}deg,weight0=1.0,weightR=0.2,maxpoints=5000 -select,name=${varname},year=${yyyy},month=${mth} ${file2sm} ${smfile}
+else
+   cdo -L -v -P 128 -smooth,radius=${smdeg}deg,weight0=1.0,weightR=0.2 -select,name=${varname},year=${yyyy},month=${mth} ${file2sm} ${smfile}
+fi
+
+## Subtract full - smooth = high pass
+cdo -sub -select,name=${varname},year=${yyyy},month=${mth} [ ${file2sm} ] ${smfile} ${hpfile} 
+
+

@@ -1,0 +1,51 @@
+#!/bin/sh
+#SBATCH --account=uo0122
+#SBATCH --job-name=remap_fesom_to_IFS25
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=remap_fesom_to_IFS25_%j.log
+#SBATCH --error=remap_fesom_to_IFS25_%j.log
+#SBATCH --exclusive
+#SBATCH --time=01:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+
+# Workaround for SLURM bug in chained jobs
+SLURM_JOB_NAME=ncatted
+sbatch () {
+    unset SLURM_MEM_PER_CPU
+    command sbatch "$@"
+}
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need yyyy"
+    exit 1      #exit out of program
+fi
+
+yyyy=$1
+expid='ifs-fesom'
+varname='sst'
+
+wghtfile=/work/mh0256/m300466/ifsfesomgrids/NG5_to_IFS25invertlat_conremapweights.nc
+targetgrid=/work/mh0256/m300466/DPP/grid/temp_IFS25invertlat_MR_gridexample.nc
+srcgrid=/work/ab0995/a270088/public/grids/NG5_griddes_nodes_IFS.nc
+outdir=/work/bm1344/m300466/reg25/ifsfesom/${varname}
+mkdir -p ${outdir}
+
+
+
+#for yyyy in $(seq 1971 1972);
+#do
+   fesomdir=/work/bm1344/a270228/EERIE_NextG_Hackathon/IFS-FESOM_CONTROL-1950/tco1279-NG5/${yyyy}/FESOM/native/daily
+   for mth in $(seq 1 12);
+   do
+      echo 'Remap '${varname}' for yr='${yyyy}', mth='${mth}
+      if [ ${mth} -le 9 ]; then
+	  cdo -P 48 -setctomiss,0 -remap,${targetgrid},${wghtfile} -setgrid,${srcgrid}  ${fesomdir}/fesom_${varname}_${yyyy}0${mth}01-${yyyy}0${mth}??_daily-NG5.nc ${outdir}/${expid}_${varname}_${yyyy}0${mth}_IFS25.nc
+      else
+         cdo -P 48 -setctomiss,0 -remap,${targetgrid},${wghtfile} -setgrid,${srcgrid}  ${fesomdir}/fesom_${varname}_${yyyy}${mth}01-${yyyy}${mth}??_daily-NG5.nc ${outdir}/${expid}_${varname}_${yyyy}${mth}_IFS25.nc
+      fi
+   done
+#done
+
+

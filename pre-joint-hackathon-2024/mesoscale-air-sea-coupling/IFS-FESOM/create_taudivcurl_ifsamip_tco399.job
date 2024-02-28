@@ -1,0 +1,51 @@
+#!/bin/sh
+#SBATCH --account=uo0122
+#SBATCH --job-name=taudivcurl
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=taudivcurl_%j.log
+#SBATCH --error=taudivcurl_%j.log
+#SBATCH --exclusive
+#SBATCH --time=08:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+
+# Workaround for SLURM bug in chained jobs
+SLURM_JOB_NAME=ncatted
+sbatch () {
+    unset SLURM_MEM_PER_CPU
+    command sbatch "$@"
+}
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need expid"
+    exit 1      #exit out of program
+fi
+if [ -z "$2" ] ; then
+    echo "invalid number of parameters: need year"
+    exit 1      #exit out of program
+fi
+
+expid=$1
+yyyy=$2
+
+# Compute surface tau divergence and curl for IFS AMIP runs 
+#expid='OSTIA'
+#expid='OSTIA_LR30'
+#expid='OSTIA_c_LR30_a_LR30'
+#expid='OSTIA_c_LR30_a_0'
+invarname='tau_divcurl'
+ifsdir=/work/bk1377/b382473/IFS_AMIP/prepIFS/${expid}/2D_6h_native
+outdir=/work/bm1344/m300466/native/IFS
+mkdir -p ${outdir}/${expid}
+mkdir -p ${outdir}/${expid}/${invarname}
+
+#for yyyy in $(seq 2010 2020);
+#do
+   for mth in $(seq 1 12);
+   do
+      if [ $mth -lt 10 ]; then mm='0'$mth; else mm=$mth; fi 
+      echo 'Compute tau div curl for yr='${yyyy}', mth='${mth}
+      cdo -P 48 --eccodes -f nc4 -sp2gp,cubic -uv2dv,cubic -setgridtype,regular -merge [ -chcode,180,131 -daymean -select,year=${yyyy},month=${mth} [ ${ifsdir}/mmsf_fc_sfc_180.*.grib ] -chcode,181,132 -daymean -select,year=${yyyy},month=${mth} [ ${ifsdir}/mmsf_fc_sfc_181.*.grib ] ] ${outdir}/${expid}/${invarname}/${expid}_${invarname}_${yyyy}${mm}_gridded.nc
+   done
+#done

@@ -1,0 +1,50 @@
+#!/bin/bash
+#SBATCH --account=mh0256
+#SBATCH --job-name=runmean
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=runmean.run.%j.o
+#SBATCH --error=runmean.run.%j.o
+#SBATCH --exclusive
+#SBATCH --time=06:00:00
+###SBATCH --mail-type=END
+###SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need varname"
+    exit 1      #exit out of program
+fi
+
+module load cdo
+
+varname=$1
+expid=ifs-fesom
+
+rmn=30
+indir=/work/bm1344/m300466/reg25/ifsfesom
+outdir=/work/bm1344/m300466/reg25/ifsfesom/${rmn}dayrunmean
+test -d ${outdir} || mkdir -p ${outdir}
+
+if [ $expid == 'ifs-fesom' ]; then
+  nts=7670  
+  daterng='19500101-19701231'
+elif [ $expid == 'erc1011' ]; then
+  nts=2557  
+  daterng='20020101-20081231'
+fi
+
+   test -d ${outdir}/${varname} || mkdir -p ${outdir}/${varname}
+   varfilelist=$( ls ${indir}/${varname}/${expid}_${varname}_??????_IFS25.nc)
+   rmnvarfile=${outdir}/${varname}/${expid}_${varname}_${daterng}_IFS25_${rmn}dayrmn.nc
+   cdo -P 48 -runmean,${rmn} -select,name=${varname},year=1950/1970 [ ${varfilelist} ] ${rmnvarfile}
+
+#   if [ $varname == wspd ] || [ $varname == so ]; then
+#      ### Remove depth dimension in to, so, rho
+#      ### Remove height dimension in to, so, rho
+#      tempfile=${rmnvarfile}.orig
+#      mv ${rmnvarfile} ${tempfile}
+#      ncwa -a height ${tempfile} ${rmnvarfile}
+#      ncks -C -O -x -v height ${rmnvarfile} ${rmnvarfile}
+#      rm ${tempfile}
+#   fi
+
