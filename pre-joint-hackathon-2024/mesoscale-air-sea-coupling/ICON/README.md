@@ -94,7 +94,7 @@ Use [create_daily_EkmanPumping_erc1011.py](mesoscale-air-sea-coupling/ICON/creat
 
 ### 2) Remap onto regular 0.25deg grid
 
-Use [remap_dm_yrmth_r2b9O_IFS25.job](mesoscale-air-sea-coupling/ICON/remap_dm_yrmth_r2b9O_IFS25.job) and [submit_remapIFS25.sh](ICON/submit_remapIFS25.sh)
+Use [remap_dm_yrmth_r2b9O_IFS25.job](mesoscale-air-sea-coupling/ICON/remap_dm_yrmth_r2b9O_IFS25.job) and [submit_remapIFS25.sh](mesoscale-air-sea-coupling/ICON/submit_remapIFS25.sh)
 
 	./submit_remapIFS25.sh
 
@@ -128,4 +128,4 @@ Use [sm_30dayrunmean_dailyIFS25_yrmth.job](mesoscale-air-sea-coupling/ICON/sm_30
 
 Global maps of coupling coefficients are evaluated via temporal regressions for a given season (JJA, DJF). Standard errors are also computed to provide 95\% confidence bounds to the coupling coefficients. We took a conservative estimate of 40 for effective degrees of freedom. 
 
-Please see [regress_stderror.sh](ICON/regress_stderror.sh) for details.
+Please see [regress_stderror.sh](mesoscale-air-sea-coupling/ICON/regress_stderror.sh) for details.

@@ -1,0 +1,37 @@
+#!/bin/sh
+#SBATCH --account=bm1313
+#SBATCH --job-name=IDeddy
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=IDeddy_%j.log
+#SBATCH --error=IDeddy_%j.log
+#SBATCH --exclusive
+#SBATCH --time=08:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need year"
+    exit 1      #exit out of program
+fi
+if [ -z "$2" ] ; then
+    echo "invalid number of parameters: need month"
+    exit 1      #exit out of program
+fi
+if [ -z "$3" ] ; then
+    echo "invalid number of parameters: need day"
+    exit 1      #exit out of program
+fi
+yr=$1
+mth=$2
+day=$3
+
+module unload python3
+source /work/mh0256/m300466/miniconda3/bin/activate
+conda activate t2
+
+#for yr in $(seq 2020 2050);
+#do
+    python IDeddy_dm_hamocc.py ${yr} ${mth} ${day}
+#done
