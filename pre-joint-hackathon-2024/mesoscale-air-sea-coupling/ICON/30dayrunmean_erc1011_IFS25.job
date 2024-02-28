@@ -1,0 +1,81 @@
+#!/bin/bash
+#SBATCH --account=mh0256
+#SBATCH --job-name=runmean
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=runmean.run.%j.o
+#SBATCH --error=runmean.run.%j.o
+#SBATCH --exclusive
+#SBATCH --time=03:00:00
+###SBATCH --mail-type=END
+###SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need varname"
+    exit 1      #exit out of program
+fi
+
+#module use /sw/intel/oneapi/compiler/2021.3.0/modulefiles /sw/intel/oneapi/tbb/2021.3.0/modulefiles 
+#module load compiler
+module load cdo
+
+varname=$1
+expid=erc1011
+#gridfile=/pool/data/ICON/grids/public/mpim/0016/icon_grid_0016_R02B09_O.nc
+
+#smdeg=2
+rmn=30
+freqm=dm
+indir=/work/bm1344/k203123/reg25/${expid}
+outdir=/work/bm1344/k203123/reg25/${expid}/${rmn}dayrunmean
+test -d ${outdir} || mkdir -p ${outdir}
+
+#declare -a namevararr=("downSSTgrad" "crossSSTgrad" "taudiv" "taucurl")
+#declare -a namevararr=("windwork")
+#declare -a namevararr=("SST" "SSH" "SLP")
+#declare -a namevararr=("LHF" "SHF" "LW" "SW")
+#declare -a namevararr=("dSSTdt")
+#declare -a namevararr=("TAUX" "TAUY" "Uocn" "Vocn")
+#declare -a namevararr=("WSP" "TAUmag" "ocnUVmag")
+#declare -a namevararr=("to")
+#declare -a namevararr=("taumag")
+#declare -a namevararr=("taucurl")
+#declare -a namevararr=("sfcvort")
+
+if [ $expid == 'ngc2009' ]; then
+  nts=771  #ntime in varfile1
+  daterng='20200121-20220301'
+elif [ $expid == 'erc1011' ]; then
+  nts=2557  
+  daterng='20020101-20081231'
+fi
+
+#for varname in "${namevararr[@]}"
+#do
+   test -d ${outdir}/${varname} || mkdir -p ${outdir}/${varname}
+   if [ $varname == to ] || [ $varname == so ]; then
+      zidx=1
+      varfilelist=$( ls ${indir}/${varname}/${expid}_${varname}_${zidx}_${freqm}_????0101-????1231_IFS25.nc)
+      rmnvarfile=${outdir}/${varname}/${expid}_${varname}_${zidx}_${freqm}_${daterng}_IFS25_${rmn}dayrmn.nc
+   else
+      varfilelist=$( ls ${indir}/${varname}/${expid}_${varname}_${freqm}_????0101-????1231_IFS25.nc)
+      rmnvarfile=${outdir}/${varname}/${expid}_${varname}_${freqm}_${daterng}_IFS25_${rmn}dayrmn.nc
+   fi
+   cdo -L -P 128 -runmean,${rmn} -select,name=${varname} [ ${varfilelist} ] ${rmnvarfile}
+
+   if [ $varname == to ] || [ $varname == so ]; then
+      ### Remove depth dimension in to, so, rho
+      tempfile=${rmnvarfile}.orig
+      mv ${rmnvarfile} ${tempfile}
+      ncwa -a depth ${tempfile} ${rmnvarfile}
+      ncks -C -O -x -v depth ${rmnvarfile} ${rmnvarfile}
+      rm ${tempfile}
+   fi
+
+  # startts=`expr $rmn / 2`
+  # endts=`expr $nts - $startts`
+  # #shortnts=`expr $nts - $rmn`
+  # detrvarfile=${outdir}/${varname}/${expid}_${varname}_${freqm}_${daterng}_IFS25_detr.nc
+  # cdo -detrend -sub -seltimestep,${startts}/${endts} ${varfile} ${rmnvarfile} ${detrvarfile}
+
+#done

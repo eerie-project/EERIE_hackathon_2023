@@ -1,0 +1,54 @@
+#!/bin/sh
+#SBATCH --account=uo0122
+#SBATCH --job-name=wspd_ifs
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=wspd_ifs_%j.log
+#SBATCH --error=wspd_ifs_%j.log
+#SBATCH --exclusive
+#SBATCH --time=00:10:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+
+# Workaround for SLURM bug in chained jobs
+SLURM_JOB_NAME=ncatted
+sbatch () {
+    unset SLURM_MEM_PER_CPU
+    command sbatch "$@"
+}
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need yyyy"
+    exit 1      #exit out of program
+fi
+
+yyyy=$1
+expid='ifs-fesom'
+varnamex1='10u'
+varnamey1='10v'
+namevarxy='wspd'
+
+wghtfile=/work/mh0256/m300466/ifsfesomgrids/tco1279gridpoint_to_IFS25invertlat_conremapweights.nc
+targetgrid=/work/mh0256/m300466/DPP/grid/temp_IFS25invertlat_MR_gridexample.nc
+
+outdir=/work/bm1344/m300466/reg25/ifsfesom/${namevarxy}
+mkdir -p ${outdir}
+
+
+
+#for yyyy in $(seq 1950 1970);
+#do
+   ifsdir=/work/bm1344/a270228/EERIE_NextG_Hackathon/IFS-FESOM_CONTROL-1950/tco1279-NG5/${yyyy}/IFS/original/daily
+   for mth in $(seq 1 12);
+   do 
+      echo 'Compute wind speed for yr='${yyyy}', mth='${mth}
+      if [ ${mth} -le 9 ]; then
+         cdo -P 48 -remap,${targetgrid},${wghtfile} -chname,${varnamex1},${namevarxy} -setgridtype,regular -sqrt -add -sqr ${ifsdir}/${varnamex1}_10_${yyyy}0${mth}01-${yyyy}0${mth}??_daily_origin_grid.nc -sqr ${ifsdir}/${varnamey1}_10_${yyyy}0${mth}01-${yyyy}0${mth}??_daily_origin_grid.nc ${outdir}/${expid}_${namevarxy}_${yyyy}0${mth}_IFS25.nc
+      else
+         cdo -P 48 -remap,${targetgrid},${wghtfile} -chname,${varnamex1},${namevarxy} -setgridtype,regular -sqrt -add -sqr ${ifsdir}/${varnamex1}_10_${yyyy}${mth}01-${yyyy}${mth}??_daily_origin_grid.nc -sqr ${ifsdir}/${varnamey1}_10_${yyyy}${mth}01-${yyyy}${mth}??_daily_origin_grid.nc ${outdir}/${expid}_${namevarxy}_${yyyy}${mth}_IFS25.nc
+      fi
+   done
+#done 
+
+
+

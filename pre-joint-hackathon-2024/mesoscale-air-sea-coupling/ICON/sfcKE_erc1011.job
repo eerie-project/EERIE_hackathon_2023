@@ -1,0 +1,91 @@
+#!/bin/bash
+#SBATCH --account=uo0122
+#SBATCH --job-name=sfcKE
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=sfcKE.run.%j.o
+#SBATCH --error=sfcKE.run.%j.o
+#SBATCH --exclusive
+#SBATCH --time=01:30:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need year"
+    exit 1      #exit out of program
+fi
+if [ -z "$2" ] ; then
+    echo "invalid number of parameters: need month"
+    exit 1      #exit out of program
+fi
+
+yyyy=$1
+mm=$2
+
+expid=erc1011
+#catdir=/work/bm1344/k203123/icon-mpim/ec1-5/experiments/${expid}/scripts
+#catalog=${catdir}/${expid}.json
+catdir=/home/m/m300466/EERIE/intake
+catalog=${catdir}/${expid}_200201-200812.json
+
+outdir=/work/mh0287/m300466/EERIE/${expid}
+
+test -d ${outdir} || mkdir -p ${outdir}
+cd ${outdir}
+
+# provide intake find files
+#test -f find_files || ln -s /home/k/k203123/Quickplots/find_files .
+test -f find_files || ln -s /home/m/m300466/pyfuncs/find_files .
+
+#varname='Wind_Speed_10m'
+#namevar='WSP'
+#namevarx1='TAUX'
+#varnamex1='atmos_fluxes_stress_xw'
+#namevary1='TAUY'
+#varnamey1='atmos_fluxes_stress_yw'
+#namevarxy='TAUmag'
+namevarx2='Uocn'
+varnamex2='u'
+namevary2='Vocn'
+varnamey2='v'
+#namevarxy='ocnUVmag'
+#namevarxy='windwork'
+namevarxy='sfcKE'
+
+test -d ${outdir}/${namevarxy} || mkdir -p ${outdir}/${namevarxy}
+test -d ${outdir}/${namevarxy}/dm || mkdir -p ${outdir}/${namevarxy}/dm
+
+echo '======================================='
+
+#varfile=`./find_files --catalog_file=${catalog} ${varname} ${expid} --level_type=2d --frequency=1day --time_range 2002-01-02 2002-02-01T23 `
+
+#for yyyy in $(seq 2002 2008); 
+#do
+#  for mm in $(seq 1 12);
+#  do
+    yyyyp=` expr ${yyyy} + 1 `
+    mmp=` expr ${mm} + 1 `
+    if [ $mm -lt 10 ]; then mm='0'$mm; else mm=$mm; fi 
+    if [ $mmp -lt 10 ]; then mmp='0'$mmp; else mmp=$mmp; fi 
+    sdate=${yyyy}'-'${mm}'-02'
+    if [ $mm -gt 11 ]; then 
+      edate=${yyyyp}'-01-01'
+      daterng=${yyyy}'12'
+    else 
+      edate=${yyyy}'-'${mmp}'-01'
+      daterng=${yyyy}${mm}
+    fi
+    varfile=`./find_files --catalog_file=${catalog} ${varnamex2} ${expid} --level_type=2d --frequency=1day --time_range ${sdate} ${edate}T23 `
+#    varx1file=`./find_files --catalog_file=${catalog} ${varnamex1} ${expid} --frequency=1day --time_range ${sdate} ${edate}T23 `
+#    echo $varx1file
+#    vary1file=`./find_files --catalog_file=${catalog} ${varnamey1} ${expid} --frequency=1day --time_range ${sdate} ${edate}T23 `
+#    echo $vary1file
+#    varx2file=`./find_files --catalog_file=${catalog} ${varnamex2} ${expid} --frequency=1day --time_range ${sdate} ${edate}T23 `
+#    echo $varx2file
+#    vary2file=`./find_files --catalog_file=${catalog} ${varnamey2} ${expid} --frequency=1day --time_range ${sdate} ${edate}T23 `
+#    echo $vary2file
+#    cdo -add -mul -select,name=${varnamex1} [ ${varx1file} ] -select,name=${varnamex2},levidx=1 [ ${varx2file} ] -mul -select,name=${varnamey1} [ ${vary1file} ] -select,name=${varnamey2},levidx=1 [ ${vary2file} ] ${outdir}/${namevarxy}/dm/${expid}_${namevarxy}_dm_${daterng}.nc
+    cdo -chname,${varnamex2},${namevarxy} -shifttime,-12hour -add -mul -select,name=${varnamex2},levidx=1 [ ${varfile} ] -select,name=${varnamex2},levidx=1 [ ${varfile} ] -mul -select,name=${varnamey2},levidx=1 [ ${varfile} ] -select,name=${varnamey2},levidx=1 [ ${varfile} ] ${outdir}/${namevarxy}/dm/${expid}_${namevarxy}_dm_${daterng}.nc
+#  done
+#done
+

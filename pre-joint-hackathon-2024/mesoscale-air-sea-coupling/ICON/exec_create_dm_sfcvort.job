@@ -1,0 +1,31 @@
+#!/bin/sh
+#SBATCH --account=mh0287
+#SBATCH --job-name=sfcvort
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=sfcvort_%j.log
+#SBATCH --error=sfcvort_%j.log
+#SBATCH --exclusive
+#SBATCH --time=08:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need year"
+    exit 1      #exit out of program
+fi
+if [ -z "$2" ] ; then
+    echo "invalid number of parameters: need month"
+    exit 1      #exit out of program
+fi
+
+yr=$1
+mth=$2
+
+
+outdir=/work/mh0287/m300466/EERIE/erc1011
+test -d ${outdir}/sfcvort || mkdir -p ${outdir}/sfcvort
+test -d ${outdir}/sfcvort/dm || mkdir -p ${outdir}/sfcvort/dm
+
+python create_daily_sfcvort_erc1011.py ${yr} ${mth}

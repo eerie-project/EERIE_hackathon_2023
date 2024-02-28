@@ -1,0 +1,36 @@
+#!/bin/sh
+#SBATCH --account=mh0033
+#SBATCH --job-name=EkmanPumping
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=EkmanPumping_%j.log
+#SBATCH --error=EkmanPumping_%j.log
+#SBATCH --exclusive
+#SBATCH --time=08:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need year"
+    exit 1      #exit out of program
+fi
+if [ -z "$2" ] ; then
+    echo "invalid number of parameters: need month"
+    exit 1      #exit out of program
+fi
+
+yr=$1
+mth=$2
+
+outdir=/work/mh0287/m300466/EERIE/erc1011/Ekman
+test -d ${outdir}/Wekcurl || mkdir -p ${outdir}/Wekcurl
+test -d ${outdir}/Wekcurl/dm || mkdir -p ${outdir}/Wekcurl/dm
+test -d ${outdir}/Wekvortgrad || mkdir -p ${outdir}/Wekvortgrad
+test -d ${outdir}/Wekvortgrad/dm || mkdir -p ${outdir}/Wekvortgrad/dm
+test -d ${outdir}/Wekstern || mkdir -p ${outdir}/Wekstern
+test -d ${outdir}/Wekstern/dm || mkdir -p ${outdir}/Wekstern/dm
+test -d ${outdir}/Wekclassic || mkdir -p ${outdir}/Wekclassic
+test -d ${outdir}/Wekclassic/dm || mkdir -p ${outdir}/Wekclassic/dm
+
+python create_daily_EkmanPumping_erc1011.py ${yr} ${mth}

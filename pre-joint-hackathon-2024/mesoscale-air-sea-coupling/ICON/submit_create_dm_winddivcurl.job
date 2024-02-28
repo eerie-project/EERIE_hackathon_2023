@@ -1,0 +1,32 @@
+#!/bin/sh
+#SBATCH --account=mh0287
+#SBATCH --job-name=winddivcurl
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=winddivcurl_%j.log
+#SBATCH --error=winddivcurl_%j.log
+#SBATCH --exclusive
+#SBATCH --time=08:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need year"
+    exit 1      #exit out of program
+fi
+if [ -z "$2" ] ; then
+    echo "invalid number of parameters: need month"
+    exit 1      #exit out of program
+fi
+
+yr=$1
+mth=$2
+
+
+outdir=/work/mh0287/m300466/EERIE/erc1011/
+test -d ${outdir}/winddiv || mkdir -p ${outdir}/winddiv
+test -d ${outdir}/winddiv/dm || mkdir -p ${outdir}/winddiv/dm
+test -d ${outdir}/windcurl || mkdir -p ${outdir}/windcurl
+test -d ${outdir}/windcurl/dm || mkdir -p ${outdir}/windcurl/dm
+python create_daily_winddivcurl_erc1011.py ${yr} ${mth}

@@ -1,0 +1,114 @@
+#!/bin/bash
+#SBATCH --account=mh0287
+#SBATCH --job-name=remap25
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=remap25.run.%j.o
+#SBATCH --error=remap25.run.%j.o
+#SBATCH --exclusive
+#SBATCH --time=08:00:00
+#SBATCH --mail-type=END
+#SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need varname"
+    exit 1      #exit out of program
+fi
+if [ -z "$2" ] ; then
+    echo "invalid number of parameters: need year"
+    exit 1      #exit out of program
+fi
+if [ -z "$3" ] ; then
+    echo "invalid number of parameters: need month"
+    exit 1      #exit out of program
+fi
+varname=$1
+yyyy=$2
+yyyyp=`expr $yyyy + 1`
+mth=$3
+if [ $mth -le 9 ]; then
+   mm=`eval echo "0${mth}"`
+else
+   mm=`eval echo "${mth}"`
+fi
+
+module load cdo
+find_files=/home/m/m300466/pyfuncs/find_files
+
+expid=erc1011
+#catalog=/work/bm1344/k203123/icon-mpim/ec1-5/experiments/erc1011/scripts/erc1011.json
+#catalog=/home/m/m300466/EERIE/intake/erc1011_200201-200403.json
+catalog=/home/m/m300466/EERIE/intake/erc1011_200201-200812.json
+freqm=dm
+srcgrid=/pool/data/ICON/grids/public/mpim/0016/icon_grid_0016_R02B09_O.nc
+remapwgt=/work/mh0256/m300466/DPP/weights/r2b9O_IFS25invertlat_yconremapweights.nc
+remapwgt3=/work/mh0256/m300466/DPP/weights/r2b9Ov_IFS25invertlat_yconremapweights.nc
+targetgrid=/work/mh0256/m300466/DPP/grid/temp_IFS25invertlat_MR_gridexample.nc
+fxgrid=/pool/data/ICON/oes/input/r0005/OceanOnly_IcosSymmetric_4932m_rotatedZ37d_modified_srtm30_1min/L72/exp.ocean_era51h_zstar_r2b9_23075-ERA_fx_20100101T000200Z.nc
+
+if [ ${varname} == 'taudiv' ] || [ ${varname} == 'taucurl' ] || [ ${varname} == 'downSSTgrad' ] || [ ${varname} == 'crossSSTgrad' ]; then
+   subdirname=SSTgrad_TAUdivcurl
+elif [ ${varname} == 'lapslp' ] || [ ${varname} == 'lapsst' ]; then
+   subdirname=SSTnSLP_laplacian
+elif [ ${varname} == 'Wekcurl' ] || [ ${varname} == 'Wekvortgrad' ] || [ ${varname} == 'Wekstern' ] || [ ${varname} == 'Wekclassic' ]; then
+   subdirname=Ekman
+elif [ ${varname} == 'relvort' ] || [ ${varname} == 'geoKE' ]; then
+   subdirname=geostrophic
+else
+   subdirname=.
+fi
+
+#Filename and location for input data
+if [ ${varname} == 'taudiv' ] || [ ${varname} == 'taucurl' ] || [ ${varname} == 'downSSTgrad' ] || [ ${varname} == 'crossSSTgrad' ] || [ ${varname} == 'lapslp' ] || [ ${varname} == 'lapsst' ] || [ ${varname} == 'Wekcurl' ] || [ ${varname} == 'Wekvortgrad' ] || [ ${varname} == 'Wekstern' ] || [ ${varname} == 'Wekclassic' ] || [ ${varname} == 'relvort' ] || [ ${varname} == 'geoKE' ]; then
+   indir=/work/mh0287/m300466/EERIE/${expid}/${subdirname}/${varname}/${freqm}
+   varfilelist=$( ls ${indir}/${expid}_${varname}_${freqm}_${yyyy}${mm}??.nc)
+elif [ ${varname} == 'sfcvort' ] || [ ${varname} == 'windcurl' ] || [ ${varname} == 'winddiv' ]; then
+   indir=/work/mh0287/m300466/EERIE/${expid}/${varname}/${freqm}
+   varfilelist=$( ls ${indir}/${expid}_${varname}_${freqm}_${yyyy}${mm}??.nc)
+elif [ ${varname} == 'taumag' ] || [ ${varname} == 'windwork' ] || [ ${varname} == 'sfcKE' ]; then
+   indir=/work/mh0287/m300466/EERIE/${expid}/${varname}/${freqm}
+   varfilelist=$( ls ${indir}/${expid}_${varname}_${freqm}_${yyyy}${mm}.nc)
+else
+   #Obtain a list of path and file names that contain specified variable, frequency and time range
+   #varfilelist=$( $find_files --catalog_file=${catalog} ${varname} ${expid} --level_type=ml --frequency=1day --time_range 2002-01-02 2003-01-01T23)
+   yyyyp=` expr ${yyyy} + 1 `
+   mmp=` expr ${mth} + 1 `
+   #if [ $mth -lt 10 ]; then mm='0'$mth; else mm=$mth; fi
+   if [ $mmp -lt 10 ]; then mmp='0'$mmp; else mmp=$mmp; fi
+   sdate=${yyyy}'-'${mm}'-02'
+   if [ $mth -gt 11 ]; then
+     edate=${yyyyp}'-01-01'
+     daterng=${yyyy}'12'
+   else
+     edate=${yyyy}'-'${mmp}'-01'
+     daterng=${yyyy}${mm}
+   fi
+   varfilelist=`./find_files --catalog_file=${catalog} ${varname} ${expid} --level_type=2d --time_reduction=mean --frequency=1day --time_range ${sdate} ${edate}T23 `
+fi
+#daterng=${yyyy}'0101-'${yyyy}'1231'
+daterng=${yyyy}${mm}
+
+#Filename and location for interpolated data
+outdir=/work/bm1344/k203123/reg25/${expid}/${varname}
+test -d ${outdir} || mkdir -p ${outdir}
+chmod g+w ${outdir}
+
+if [ ${varname} == 'taudiv' ] || [ ${varname} == 'downSSTgrad' ] || [ ${varname} == 'taucurl' ] || [ ${varname} == 'crossSSTgrad' ] || [ ${varname} == 'Wekcurl' ] || [ ${varname} == 'Wekvortgrad' ] || [ ${varname} == 'Wekstern' ] || [ ${varname} == 'Wekclassic' ] || [ ${varname} == 'relvort' ] || [ ${varname} == 'geoKE' ] || [ ${varname} == 'sfcvort' ] || [ ${varname} == 'taumag' ] || [ ${varname} == 'windwork' ] || [ ${varname} == 'sfcKE' ] || [ ${varname} == 'windcurl' ] || [ ${varname} == 'winddiv' ]; then
+   varfile=${outdir}/${expid}_${varname}_${freqm}_${daterng}_IFS25.nc
+   cdo -L -P 128 -remap,${targetgrid},${remapwgt} -setgrid,${srcgrid} -select,name=${varname} [ ${varfilelist} ] ${varfile}
+#elif [ ${varname} == 'taucurl' ]; then
+#   varfile=${outdir}/${expid}_${varname}_${freqm}_${daterng}_IFS25.nc
+#   cdo -L -P 128 -remap,${targetgrid},${remapwgt3} -setgrid,${srcgrid}:3 -select,name=${varname} [ ${varfilelist} ] ${varfile}
+elif [ $varname == to ] || [ $varname == so ]; then
+   zidx=1
+   varfile=${outdir}/${expid}_${varname}_${zidx}_${freqm}_${daterng}_IFS25.nc
+   cdo -L -P 128 -remap,${targetgrid},${remapwgt} -shifttime,-12hour -setgrid,${srcgrid} -select,name=${varname},levidx=${zidx} [ ${varfilelist} ] ${varfile}
+else
+   varfile=${outdir}/${expid}_${varname}_${freqm}_${daterng}_IFS25.nc
+   cdo -L -P 128 -remap,${targetgrid},${remapwgt} -shifttime,-12hour -setgrid,${srcgrid} -select,name=${varname} [ ${varfilelist} ] ${varfile}
+
+fi
+#We shift the time stamp by -12hours in order to get it to the correct day.
+chmod g+w ${varfile}
+

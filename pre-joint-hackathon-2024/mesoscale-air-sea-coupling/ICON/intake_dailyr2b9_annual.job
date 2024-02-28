@@ -1,0 +1,91 @@
+#!/bin/bash
+#=============================================================================
+# Levante batch job parameters
+#-----------------------------------------------------------------------------
+
+#SBATCH --job-name=smooth2d
+#SBATCH --account=bu1213
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=LOG.smooth2d_%j.o
+#SBATCH --error=LOG.smooth2d_%j.o
+#SBATCH --exclusive
+#SBATCH --time=02:00:00
+
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need namevar"
+    exit 1      #exit out of program
+fi
+if [ -z "$2" ] ; then
+    echo "invalid number of parameters: need year"
+    exit 1      #exit out of program
+fi
+namevar=$1
+yyyy=$2
+yyyyp=`expr $yyyy + 1`
+
+#module use /sw/intel/oneapi/compiler/2021.3.0/modulefiles /sw/intel/oneapi/tbb/2021.3.0/modulefiles
+#module load compiler
+module load cdo
+find_files=/home/m/m300466/pyfuncs/find_files
+
+# set -ex
+
+#------------------------
+# users choice
+#------------------------
+
+expid=erc1011
+freqm=dm
+
+#========================
+
+outdir=/work/mh0287/m300466/EERIE/${expid}
+#outdir=/work/mh0287/m300466/EERIE/${expid}/SSTgrad_TAUdivcurl
+#catalog=/work/bm1344/k203123/icon-mpim/ec1-5/experiments/${expid}/scripts/${expid}.json 
+catalog=/home/m/m300466/EERIE/intake/erc1011_200201-200403.json
+
+test -d ${outdir} || mkdir -p ${outdir}
+cd ${outdir}
+test -d ${outdir}/${namevar} || mkdir -p ${outdir}/${namevar}
+test -d ${outdir}/${namevar}/${freqm} || mkdir -p ${outdir}/${namevar}/${freqm}
+
+# provide intake find files
+
+#test -f find_files || ln -s /home/k/k203123/Quickplots/find_files .
+#test -f find_files || ln -s /home/m/m300466/pyfuncs/find_files .
+
+# create links to grid files
+
+test -f icon_grid_0015_R02B09_G.nc  || ln -s /pool/data/ICON/grids/public/mpim/0015/icon_grid_0015_R02B09_G.nc .
+#test -f icon_grid_0033_R02B08_G.nc  || ln -s /pool/data/ICON/grids/public/mpim/0033/icon_grid_0033_R02B08_G.nc .
+
+
+daterng=${yyyy}'0101-'${yyyy}'1231'
+varfile=${outdir}/${namevar}/${freqm}/${expid}_${namevar}_${freqm}_${daterng}.nc
+
+if [ $namevar == 'SST' ]; then varname='to'; fi
+if [ $namevar == 'WSP' ]; then varname='Wind_Speed_10m'; fi
+if [ $namevar == 'LHF' ]; then varname='atmos_fluxes_HeatFlux_Latent'; fi
+if [ $namevar == 'SHF' ]; then varname='atmos_fluxes_HeatFlux_Sensible'; fi
+
+if [ $yyyy == 2002 ]; then
+  varfilelist=$( $find_files --catalog_file=${catalog} ${varname} ${expid} --level_type=2d --time_reduction=mean --frequency=1day --time_range ${yyyy}-01-01 ${yyyyp}-01-01T23)
+else
+  varfilelist=$( $find_files --catalog_file=${catalog} ${varname} ${expid} --level_type=2d --time_reduction=mean --frequency=1day --time_range ${yyyy}-01-02 ${yyyyp}-01-01T23)
+fi
+#echo $varfilelist
+
+#We shift the time stamp by -12hours in order to get it to the correct day.
+if [ $namevar == 'SST' ]; then 
+   #Remove depth dimension in SST
+   tempfile=${outdir}/${namevar}/${namevar}_temp_${daterng}.nc
+   cdo -L -shifttime,-12hour -select,levidx=1,name=${varname} [ ${varfilelist} ] ${tempfile}
+   ncwa -a depth ${tempfile} ${varfile}
+   ncks -C -O -x -v depth ${varfile} ${varfile}
+   rm ${tempfile}
+else
+   cdo -L -shifttime,-12hour -select,name=${varname} [ ${varfilelist} ] ${varfile}
+fi
+
