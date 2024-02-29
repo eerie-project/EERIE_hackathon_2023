@@ -36,7 +36,7 @@ We will first go through how it is done with SST and wind speeds as they are som
    - [create_taudivcurl_ifsamip_tco399.job](mesoscale-air-sea-coupling/IFS-FESOM/create_taudivcurl_ifsamip_tco399.job)
 
 - Compute gradients, divergence, curl of ocean variables on native ocean grid (skipped in this example). Since wind stress will also be on FESOM native grid, we will need to compute stress div/curl on FESOM grid.
-   - Rohit will take care of this 
+   - [ calculated gradient of SST on fesom native grid](https://github.com/eerie-project/EERIE_hackathon_2023/blob/pre-joint-hackathon-2024/pre-joint-hackathon-2024/mesoscale-air-sea-coupling/IFS-FESOM/grad_SST_fesom.ipynb)
 - Compute SST gradients for OSTIA SSTs, then regrid to IFS gridded grid (skipped for SST-wind speed coupling)
    - Matthias will take care of this
 - Downwind/crosswind SST calculations by multiplying SST gradients with angle of wind or stress (mostly on IFS original/gridded grid or FESOM native grid)
