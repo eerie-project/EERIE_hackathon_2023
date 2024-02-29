@@ -65,7 +65,7 @@ cdo -P 64 -smooth,radius=3deg,weight0=1.0,weightR=0.2,maxpoints=5000 -select,nam
 
 
 ## Bessel filter
-Using a function from py-eddy-tracker, a fixed spatial scale filter is used to smoothed the data. Here's an [example notebook](mesoscale-air-sea-coupling/Spatial_Filters/Bessel_filter_example.ipynb) of how to do this by Aaron Wienkers (ETHZ) and Dian Putrasahan (MPIM), Feb 2024. 
+Using a function from py-eddy-tracker, a fixed spatial scale filter is used to smoothed the data. Here's an [example notebook](Bessel_filter_example.ipynb) of how to do this by Aaron Wienkers (ETHZ) and Dian Putrasahan (MPIM), Feb 2024. 
 
 - Use a fixed 700km spatial filter (wavelength)
 - Usage of xarray within py-eddy-tracker made possible by Aaron Wienkers, and consequently the use of dask. Much of this example is taken from [https://github.com/eerie-project/EERIE_hackathon_2023/tree/main/RESULTS/pyeddytracker_xarray_dask_parallel](https://github.com/eerie-project/EERIE_hackathon_2023/tree/main/RESULTS/pyeddytracker_xarray_dask_parallel)
@@ -74,7 +74,7 @@ Using a function from py-eddy-tracker, a fixed spatial scale filter is used to s
 
 
 ## Gaussian filter
-Using a function from GCM filters, a varying spatial scale filter of 30*R, where R=Rossby radius, is used to smoothed the data. Here's an [example notebook](mesoscale-air-sea-coupling/Spatial_Filters/Gaussian_filter_example.ipynb) of how to do this by Matthias Aengenheyster (ECMWF) and Dian Putrasahan (MPIM), Feb 2024.
+Using a function from GCM filters, a varying spatial scale filter of 30*R, where R=Rossby radius, is used to smoothed the data. Here's an [example notebook](Gaussian_filter_example.ipynb) of how to do this by Matthias Aengenheyster (ECMWF) and Dian Putrasahan (MPIM), Feb 2024.
 - Use a variable 30*R (R=Rossby radius) spatial filter
 - Perform filtering on 0.25deg data as GCM filters can only work on gridded data. Most functions provided by Matthias Aengenheyster and much of this example is taken from [https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/RESULTS/eddy_composites-short.ipynb](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/RESULTS/eddy_composites-short.ipynb)
 - Intake catalog of EERIE data done by Fabian Wachsmann
