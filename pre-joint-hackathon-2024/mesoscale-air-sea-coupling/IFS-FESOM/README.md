@@ -1,8 +1,9 @@
 ## Model and technical details
 - For SST-wind speed coupling, we use 21-years (1950-1970) IFS/FESOM or 11-years (2010-2020) of IFS-AMIP
 - Coupling with current feedback and/or wind stress can only be computed from 1971 onwards
-- Spatial filtering uses GCM filter (Gaussian filter with spatial scales 30*R where R is the Rossby radius)
-- IFS-FESOM uses tco1279 (9km) /NG5 (4-5km) while IFS-AMIP uses tco399 (28km) resolution.
+- Spatial filtering uses GCM filter (Gaussian filter with spatial scales 30*R where R is the Rossby radius), [see example by Matthias Aengenheyster](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/RESULTS/eddy_composites-short.ipynb)
+- IFS-FESOM uses tco1279 (9km) /NG5 (4-5km). Simulations ran by Rohit Ghosh.
+- IFS-AMIP uses tco399 (28km) resolution. Simulations ran by Matthias Aengenheyster.
 
 ## Methodology
 1) [Extract and/or compute daily quantities](#1-extract-and-compute-daily-quantities) needed for getting coupling coefficient.
