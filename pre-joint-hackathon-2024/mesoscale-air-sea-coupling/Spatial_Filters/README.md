@@ -20,7 +20,7 @@ varfilelist=$(query_yaml.py -c https://raw.githubusercontent.com/eerie-project/i
 echo ${varfilelist}
 
 #Let's perform a smoothing over 3deg
-outidr=/scratch/m/m300466/eerie-control-1950/gr025/ifs-fesom2-sr/sst/CDOsmooth/sm3deg
+outdir=/scratch/m/m300466/eerie-control-1950/gr025/ifs-fesom2-sr/sst/CDOsmooth/sm3deg
 cdo -P 64 -smooth,radius=3deg,weight0=1.0,weightR=0.2,maxpoints=5000 -select,name=${varname},year=1950,month=2 ${varfilelist} ${outdir}/${varname}_195002_sm3deg.nc
 
 ## Subtract full - smooth = high pass
