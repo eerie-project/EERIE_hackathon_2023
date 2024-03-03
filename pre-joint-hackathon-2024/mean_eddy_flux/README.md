@@ -3,7 +3,7 @@ Some examples on:
   - [vertical heat fluxes in ICON](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/RESULTS/vertical_heat_flux_ICON_WP6_hackathon.ipynb) by Stella Bērziņa and Matthias Münnich
   - how to compute [in-situ or potential density from potential temperature and salinity](#in-situ-or-potential-density)
   - [find depth of isopycnal surfaces](#depth-of-isopycnal-surfaces)
-  - compute/[interpolate quantity onto isopycnal surface](#interpolate-onto-isopycnal-surfaces) (still figuring out......)
+  - compute/[interpolate quantity onto isopycnal surface](#interpolate-onto-isopycnal-surfaces) (work in progress!)
 
 
 ## In-situ or potential density
@@ -20,7 +20,7 @@ cdo -P 24 -rhopot,200 -adisit,200 -chname,to,tho,so,sao -select,name=to,so ${oce
 
 Compute potential density (ref surface, 0 bar)
 ```bash
-cdo -P 24 -rhopot,0 -adisit,0 -chname,to,tho,so,sao -select,name=to,so /work/bm1344/k203123/experiments/erc1011/run_20391101T000000-20391130T235845/erc1011_oce_ml_1mth_mean_20391201T000000Z.nc rhopoto_sigma0_erc1011_mm_203912.nc
+cdo -P 24 -rhopot,0 -adisit,0 -chname,to,tho,so,sao -select,name=to,so ${ocefile} rhopoto_sigma0_erc1011_mm_203912.nc
 ```
 
 ## Depth of isopycnal surfaces
