@@ -6,5 +6,5 @@ As preparations for the joint EERIE/NextGEMS hackathon (March 2024), here's a co
  - [Scale dependency of air-sea coupling](mesoscale-air-sea-coupling/README.md)
     - [ICON](mesoscale-air-sea-coupling/ICON/README.md)
     - [IFS/FESOM](mesoscale-air-sea-coupling/IFS-FESOM/README.md)
-
+- [Mean vs eddy fluxes](mean_eddy_fluxes/README.md)
 
