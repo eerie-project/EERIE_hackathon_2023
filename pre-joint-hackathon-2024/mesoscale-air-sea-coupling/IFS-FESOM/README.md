@@ -7,7 +7,7 @@
 
 ## Methodology
 1) [Extract and/or compute daily quantities](#1-extract-and-compute-daily-quantities) needed for getting coupling coefficient.
-   - Compute wind divergence and curl on IFS grid via cdo operators. If IFS-AMIP have outputs of windstress on IFS grid, then compute div/curl. 
+   - Compute wind divergence and curl on IFS grid via cdo operators. IFS-AMIP has outputs of windstress on IFS grid; then compute div/curl. 
    - For some ocean data (ocu,ocv,tx_sur,ty_sur): compute gradients and div/curl on native grid. IFS-FESOM only has windstress (tx_sur,ty_sur) on ocean grid.
    - Regrid SST gradients onto IFS gridded grid. 
     (dSST/dx, dSST/dy) are needed to compute crosswind and downwind SST gradients (multiply gradients with sine/cosine angle of wind). Do this for IFS-AMIP runs. For IFS/FESOM, since windstress are on ocean native grid, then we can compute crosswind/downwind SST gradients on ocean native grid. 
@@ -33,7 +33,7 @@ We will first go through how it is done with SST and wind speeds as they are som
 - [Wind divergence and curl](#surface-wind-divergence-and-curl) on IFS grid via cdo operators.  
 	- [create_winddivcurl_ifsfesom.sh](create_winddivcurl_ifsfesom.sh)
    - [create_winddivcurl_ifsamip_tco399.job](create_winddivcurl_ifsamip_tco399.job)
-- [Windstress divergence and curl](#windstress-divergence-and-curl) on IFS grid via cdo operators. IFS-AMIP has outputs of windstress on IFS grid, while IFS-FESOM does not.
+- [Windstress divergence and curl](#windstress-divergence-and-curl) on IFS grid via cdo operators. IFS-AMIP has outputs of windstress on IFS grid (called ewss and nsss), while IFS-FESOM does not.
    - [create_taudivcurl_ifsamip_tco399.job](create_taudivcurl_ifsamip_tco399.job)
 
 
