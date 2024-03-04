@@ -24,9 +24,11 @@ As an example, we use model SSH fields (0.25deg because AVISO uses the same reso
     2) [build eddy composites](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/ICON/ICON-O/howto-eddycompositeotherfields-daily.ipynb) from various 0.25deg fields
     3) [plot composites](https://github.com/eerie-project/EERIE_hackathon_2023/blob/main/ICON/ICON-O/howto-plot-eddycompositesalongtrack-dm.ipynb)
 - Computation time was getting long. Here's how to run the code in [parallel and perform parameter sensitivity experiments](https://github.com/eerie-project/EERIE_hackathon_2023/tree/main/RESULTS/pyeddytracker_parallel_computing) (Arjun Kumar).
+- Modified way to [parallelise eddy identification code](ICON/identify_fast.py) and [compositing with higher res data](ICON/composite_tracks.py) than 0.25deg (Moritz Epke) 
 - py-eddy-tracker reads in netcdf file but does not know how to use xarray. This issue was dealt with and we can now [use xarray with py-eddy-tracker + some parallelisation](https://github.com/eerie-project/EERIE_hackathon_2023/tree/main/RESULTS/pyeddytracker_xarray_dask_parallel) (Aaron Wienkers). Furthermore, the code uses dask for parallelisation. 
 - Now, feeding py-eddy-tracker with xarray obtained from reading in with intake catalog is possible. So here's an example of how to [identify and track eddies with IFS/FESOM output from intake catalog](IFS-FESOM/IDtrackeddy-daily-intake_IFSFESOM.ipynb) with xarray and some parallelisation (Aaron Wienkers and Dian Putrasahan). 
 - Applying [py-eddy-tracker on HAMOCC](HAMOCC/README.md) fields (Johann Jungclaus and Dian Putrasahan)
+
 
 
 ## Parameter choices for py-eddy-tracker
