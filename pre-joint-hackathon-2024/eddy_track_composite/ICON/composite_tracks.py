@@ -1,3 +1,6 @@
+#Composite tracked eddies with higher resolution data than 0.25deg
+#Author: Moritz Epke
+
 # %%
 from py_eddy_tracker.dataset.grid import RegularGridDataset
 from datetime import datetime, timedelta
