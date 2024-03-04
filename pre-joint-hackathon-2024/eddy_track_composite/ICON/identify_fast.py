@@ -1,3 +1,6 @@
+#Fast identification of eddies via parallelisation of code
+#Author: Moritz Epke
+
 # %%
 import sys
 import glob, os
