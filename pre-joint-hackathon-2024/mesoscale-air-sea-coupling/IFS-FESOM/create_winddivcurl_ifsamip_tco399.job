@@ -1,5 +1,5 @@
 #!/bin/sh
-#SBATCH --account=uo0122
+#SBATCH --account=bk1377
 #SBATCH --job-name=winddivcurl
 #SBATCH --partition=compute
 #SBATCH --nodes=1
@@ -9,7 +9,7 @@
 #SBATCH --exclusive
 #SBATCH --time=08:00:00
 #SBATCH --mail-type=END
-#SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+##SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
 
 # Workaround for SLURM bug in chained jobs
 SLURM_JOB_NAME=ncatted
@@ -36,7 +36,7 @@ yyyy=$2
 #expid='OSTIA_c_LR30_a_0'
 invarname='wind_divcurl'
 ifsdir=/work/bk1377/b382473/IFS_AMIP/prepIFS/${expid}/2D_6h_native
-outdir=/work/bm1344/m300466/native/IFS
+outdir=/work/bk1377/b382473/native/IFS
 mkdir -p ${outdir}/${expid}
 mkdir -p ${outdir}/${expid}/${invarname}
 
@@ -46,6 +46,7 @@ mkdir -p ${outdir}/${expid}/${invarname}
    do
       if [ $mth -lt 10 ]; then mm='0'$mth; else mm=$mth; fi 
       echo 'Compute wind div curl for yr='${yyyy}', mth='${mth}
-      cdo -P 48 --eccodes -f nc4 -sp2gp,cubic -uv2dv,cubic -setgridtype,regular -merge [ -chcode,165,131 -daymean -select,year=${yyyy},month=${mth} [ ${ifsdir}/mmsf_fc_sfc_165.*.grib ] -chcode,166,132 -daymean -select,year=${yyyy},month=${mth} [ ${ifsdir}/mmsf_fc_sfc_166.*.grib ] ] ${outdir}/${expid}/${invarname}/${expid}_${invarname}_${yyyy}${mm}_gridded.nc
+    #   echo ${cdo -P 48 --eccodes -f nc4 -sp2gp,cubic -uv2dv,cubic -setgridtype,regular -merge [ -chcode,165,131 -daymean -select,year=${yyyy},month=${mth} [ ${ifsdir}/mmsf_fc_sfc_165.*.grib ] -chcode,166,132 -daymean -select,year=${yyyy},month=${mth} [ ${ifsdir}/mmsf_fc_sfc_166.*.grib ] ] ${outdir}/${expid}/${invarname}/${expid}_${invarname}_${yyyy}${mm}_gridded.nc}
+    #   cdo -P 48 --eccodes -f nc4 -sp2gp,cubic -uv2dv,cubic -setgridtype,regular -merge [ -chcode,165,131 -daymean -select,year=${yyyy},month=${mth} [ ${ifsdir}/mmsf_fc_sfc_165.*.grib ] -chcode,166,132 -daymean -select,year=${yyyy},month=${mth} [ ${ifsdir}/mmsf_fc_sfc_166.*.grib ] ] ${outdir}/${expid}/${invarname}/${expid}_${invarname}_${yyyy}${mm}_gridded.nc
    done
 #done
