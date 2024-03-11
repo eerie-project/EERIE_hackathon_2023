@@ -11,3 +11,8 @@ __pycache__/
 
 # VSCode
 *.code-workspace
+
+# Logging files
+*.out
+*.err
+*.log
