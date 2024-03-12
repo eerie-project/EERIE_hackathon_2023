@@ -1,6 +1,6 @@
 # Post Joint Hackathon 2024
 
-Hackathon was a success! Here's a collection of material from the hackathon. 
+Hackathon was a success! Here's a collection of material from the hackathon, with a request to participants willing to share their scripts, notebooks, figures, to please upload them to [StormsOceanBOGplots folder](StormsOceanBOGplots) for figures or slides, and [notebooks folder](notebooks) for scripts and notebooks you may have created pre/during/post hackathon. Please don't forget to make a pull request when you've uploaded material. If you have issues, please contact Nikolay or Dian. 
 
 - [Slides and figures in this repo](StormsOceanBOGplots) from the breakout groups of Storms & Ocean (nextGEMS) and EERIE
   - [Owncloud folder](https://owncloud.gwdg.de/index.php/s/z3pHKrPkqSvLeJc) hosting slides from S&O breakout groups
