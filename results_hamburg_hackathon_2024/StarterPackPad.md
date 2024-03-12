@@ -1,4 +1,5 @@
 # Hackathon Starter Pack
+You can view original pad [here](https://pad.gwdg.de/nSKolAzGQY2zLz3oOr0QSQ?view)
 
 # TABLE OF CONTENTS
 - [Hackathon Starter Pack](#hackathon-starter-pack)
@@ -7,6 +8,8 @@
     + [DKRZ User account for data access](#dkrz-user-account-for-data-access)
     + [Jupyterhub](#jupyterhub)
     + [Python environments](#python-environments)
+    + [Building python environment](#building-python-environment)
+      - [Easiest option (pre-made python env for hackathon)](#easiest-option-pre-made-python-env-for-hackathon)
     + [CDO Versions](#cdo-versions)
     + [General documentation](#general-documentation)
 - [Simulation Overview](#simulation-overview)
@@ -23,8 +26,6 @@
     + [EERIE (data access via intake)](#eerie-data-access-via-intake)
     + [EERIE (data access on shell environment for cdo operations)](#eerie-data-access-on-shell-environment-for-cdo-operations)
   * [Example notebooks on some scientific analysis](#example-notebooks-on-some-scientific-analysis)
-  * [Building python environment](#building-python-environment)
-    + [Easiest option (pre-made python env for hackathon)](#easiest-option-pre-made-python-env-for-hackathon)
 - [Hackathon breakout groups](#hackathon-breakout-groups)
   * [Storms&Ocean](#stormsocean)
   * [Storms&Radiation](#stormsradiation)
@@ -64,13 +65,41 @@ Once you have a DKRZ user account, you can log into [jupyterhub](https://jupyter
 
 ### Python environments
 
-See
+See [how to obtain various python environment in this hackathon]() and 
 
-https://pad.gwdg.de/aVT-yC_6T9qopIDekEipqA#
-and
-https://pad.gwdg.de/bJMq4TloSCiPFeWjvsprGg#
+### Building python environment
+Here are 3 options:
+* [x] [Easiest option](#Easiest-option-pre-made-python-env-for-hackathon). Use pre-made environment that can be loaded via a 'module load'
+* [x] [Use someone else's a working environment](BuildPyEnv.md#using-someone-elses-working-python-environment)
+* [x] [Instructions to build your own python environment](BuildPyEnv.md#build-your-own-python-environment), specifically for using py-eddy-tracker and GCM filters with EERIE and NextGEMS data
+ 
+#### Easiest option (pre-made python env for hackathon)
 
-for some hints
+```
+module use /work/k20200/k202134/hsm-tools/outtake/module
+module rm python3
+```
+
+**Choose from 3 pre-made environments:**
+For NextGEMS applications:
+```
+module load python3/hamburg-hackathon
+python -m ipykernel install --name python-HH-hackathon --user
+```
+For pyeddytracker and GCM filters:
+```
+module load python3/hamburg-hackathon-eddyenv
+python -m ipykernel install --name eddyenv-HH-hackathon --user
+install_kernel --cdo /sw/spack-levante/cdo-2.3.0-mck3wy/bin/cdo --kernel_name hamburg-hackathon-eddyenv
+```
+For using an even newer python module on Levante:
+```
+module load python3/.newunstable
+python -m ipykernel install --name newpy-HH-hackathon --user
+```
+
+[**Learn how to evaluate python environmentin this hackathon**](https://pad.gwdg.de/aVT-yC_6T9qopIDekEipqA#)
+
 
 ### CDO Versions
 
@@ -97,7 +126,7 @@ At this hackathon we have access to simulations from both the [nextGEMS](https:/
 ## NextGEMS
 
 ::: info
-Also see the [![easy.gems](https://pad.gwdg.de/uploads/92f5cad0-ec2f-4df9-b289-0e6e5d021068.png =50x)](https://easy.gems.dkrz.de) site for documentation about these runs and the other nextGEMS cycles
+Also see the [easy.gems site](https://easy.gems.dkrz.de) for documentation about these runs and the other nextGEMS cycles
 :::
 
 ```python
@@ -360,38 +389,6 @@ Here's a [collection of examples](https://github.com/eerie-project/EERIE_hackath
     - [3D atm clim state](https://github.com/eerie-project/EERIE_hackathon_2023/blob/pre-joint-hackathon-2024/RESULTS/IFS_AMIP_atmosresponse_to_SST_forcing_djf_clmdiff_3D.ipynb) by Iuliia Polkova
     - [atm covariability/correlation](https://github.com/eerie-project/EERIE_hackathon_2023/blob/pre-joint-hackathon-2024/RESULTS/IFS_AMIP_atmosresponse_to_SST_forcing_djf_correlation.ipynb) by Iuliia Polkova
     - [local atm response (composites)](https://github.com/eerie-project/EERIE_hackathon_2023/blob/pre-joint-hackathon-2024/RESULTS/IFS_AMIP_composites.ipynb) by Chris Roberts and Matthias Aengenheyster
-
-
-## Building python environment
-Here are 3 options:
-* [x] [Easiest option](#Easiest-option-pre-made-python-env-for-hackathon). Use pre-made environment that can be loaded via a 'module load'
-* [x] [Use someone else's a working environment](https://pad.gwdg.de/bJMq4TloSCiPFeWjvsprGg?view#Using-someone-else%E2%80%99s-working-python-environment)
-* [x] [Instructions to build your own python environment](https://pad.gwdg.de/bJMq4TloSCiPFeWjvsprGg?view#Build-your-own-python-environment), specifically for using py-eddy-tracker and GCM filters with EERIE and NextGEMS data
- 
-### Easiest option (pre-made python env for hackathon)
-
-```
-module use /work/k20200/k202134/hsm-tools/outtake/module
-module rm python3
-```
-
-**Choose from 3 pre-made environments:**
-For NextGEMS applications:
-```
-module load python3/hamburg-hackathon
-python -m ipykernel install --name python-HH-hackathon --user
-```
-For pyeddytracker and GCM filters:
-```
-module load python3/hamburg-hackathon-eddyenv
-python -m ipykernel install --name eddyenv-HH-hackathon --user
-install_kernel --cdo /sw/spack-levante/cdo-2.3.0-mck3wy/bin/cdo --kernel_name hamburg-hackathon-eddyenv
-```
-For using an even newer python module on Levante:
-```
-module load python3/.newunstable
-python -m ipykernel install --name newpy-HH-hackathon --user
-```
 
 
 # Hackathon breakout groups
