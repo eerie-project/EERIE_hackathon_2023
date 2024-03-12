@@ -195,9 +195,6 @@ If nevertheless you consider them relevant for your research, you are responsibl
 Details about EERIE models can be found [here](https://eerie-project.eu/research/modelling/our-models/)
 
 An interactive overview on EERIE data can be found [here](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/eerie-cloud_view-and-access.html).
-{please fill information about where to find data and link to variable list}
-
-<iframe src="https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/eerie-cloud_view-and-access.html" width=100% height="800"></iframe>
 
 | Model   | Resolution | Simulation (Forcing) | output | status | data <br> `eerie_cat['dkrz.disk.model-output'][model][expid][realm][gridspec]`| link(s) for more info [(interactive EERIE data overview)](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/eerie-cloud_view-and-access.html) |
 | -------- | --------   | -------- | --------| ---------|-----| ----|
@@ -230,9 +227,9 @@ exp_id = "ngc4005" # or 'ngc4006', 'ngc4007', 'ngc4008'
 dataset = cat.ICON[exp_id](zoom=2).to_dask()
 display(dataset)
 ```
-:::warning
+
 When using evaluation routines from previous hackathons, please note that the ICON variable names are no longer lowercase only!
-:::
+
 Read in data for ICON+HAMOCC simulation. Note that this data is not available on the HEALPix grid and we cannot specify the zoom level. 
 
 ```python=
