@@ -10,3 +10,6 @@ Hackathon was a success! Here's a collection of material from the hackathon.
 - [Slides and figures in this repo](ClosingPlenary) from the closing plenary session (includes hackathon pictures!)
   - [Owncloud folder](https://owncloud.gwdg.de/index.php/s/uTnNx02YuENDwYT?path=%2F) hosting slides from hackathon plenary sessions
 - Data viewers
+  - Interactive variable browser: [https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/eerie-cloud_view-and-access.html](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/eerie-cloud_view-and-access.html)
+  - Interactive animation viewer: [https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/eerie-cloud_gr025_interactive-animation.html](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/eerie-cloud_gr025_interactive-animation.html)
+  - Interactive climatology and model difference viewer: 
