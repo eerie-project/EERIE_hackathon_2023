@@ -430,12 +430,4 @@ Working towards papers, consolidate/collect results
 
 
 
-| Topics | Projects/WPs | Lead  |
-| -------- | -------- | -------- |
-|          |          |           |
-
-## Room plan for breakout groups
-![](https://pad.gwdg.de/uploads/0d84aa08-b647-486b-ba75-dc9f950fbe52.png)
-
-
 
