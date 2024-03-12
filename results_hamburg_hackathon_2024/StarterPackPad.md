@@ -158,15 +158,15 @@ For a quick look at results and output available, see
 
 Only available for HEALPix zoom level 0 - 8, plus level 9 for _precipitation flux_
 
-* ngc4005 ^[[ngc4005 development info:lock:](https://gitlab.dkrz.de/icon/icon-mpim/-/issues/17)]: ssp370 like scenario run from 2020 :warning: intermittent changes in output configuration.
+* [ngc4005 development info](https://gitlab.dkrz.de/icon/icon-mpim/-/issues/17): ssp370 like scenario run from 2020 :warning: intermittent changes in output configuration.
 Intake reference: `cat.ICON.ngc4005`
   * 2024-04-01: adjust sea-ice parameters to yield more summer sea ice
  
-* ngc4006 ^[[ngc4006 development info:lock:](https://gitlab.dkrz.de/icon/icon-mpim/-/issues/57)]: continue ngc4005 for 2025 - 2040, finalized output configuration.
+* [ngc4006 development info](https://gitlab.dkrz.de/icon/icon-mpim/-/issues/57): continue ngc4005 for 2025 - 2040, finalized output configuration.
 Intake reference: `cat.ICON.ngc4006`
     * discontinued in favor of ngc4007 (later ngc4008) as model results were increasingly impaired by  insufficient stratocumulus cloud formation
 
-* ngc4007 ^[[ngc4007 development info:lock:](https://gitlab.dkrz.de/icon/icon-mpim/-/issues/78)]: includes bug fix for land energy balance; modification of inhomogeneity factor to account for boundary layer clouds. Starts with the 2020 initial conditions like ngc4005, modulo a more adjusted hydrological discharge model.
+* [ngc4007 development info](https://gitlab.dkrz.de/icon/icon-mpim/-/issues/78): includes bug fix for land energy balance; modification of inhomogeneity factor to account for boundary layer clouds. Starts with the 2020 initial conditions like ngc4005, modulo a more adjusted hydrological discharge model.
 Intake reference: `cat.ICON.ngc4007`
     * Not restarted after about 1.3 years due stratocumulus albedo/temperature bias, in favor of ngc4008.
 
