@@ -2,8 +2,8 @@
 
 There are suppose to be 3 options:
 * [x] Use pre-made environment that can be loaded via '[module load](#easiest-option-pre-made-python-env-for-hackathon)' (Kamesh, Flo, Dian)
-* [x] [Use someone else's working environment](#Using-someone-else’s-working-python-environment) (Kamesh, Dian)
-* [x] [Instructions to build python environment from scratch](#Build-your-own-python-environment) (Kamesh, Dian)
+* [x] [Use someone else's working environment](#using-someone-elses-working-python-environment) (Kamesh, Dian)
+* [x] [Instructions to build python environment from scratch](#build-your-own-python-environment) (Kamesh, Dian)
 
 ## Easiest option (pre-made python env for hackathon)
 This would be the easiest route for users who do not want to change their python environment but would like to use py-eddy-tracker with xarray and dask, GCM filters, +++ . 
@@ -13,7 +13,7 @@ module use /work/k20200/k202134/hsm-tools/outtake/module
 module rm python3
 ```
 
-**Choose from 3 pre-made environments:**
+### Choose from 3 pre-made environments
 For NextGEMS applications:
 ```
 module load python3/hamburg-hackathon
