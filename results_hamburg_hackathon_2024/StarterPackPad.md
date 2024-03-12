@@ -125,9 +125,7 @@ At this hackathon we have access to simulations from both the [nextGEMS](https:/
 
 ## NextGEMS
 
-::: info
 Also see the [easy.gems site](https://easy.gems.dkrz.de) for documentation about these runs and the other nextGEMS cycles
-:::
 
 ```python
 import intake
@@ -142,7 +140,6 @@ cat = intake.open_catalog("https://data.nextgems-h2020.eu/catalog.yaml")
 
 ### ICON
 
-::: success
 For a quick look at results and output available, see
 * [Global mean time-series](https://swift.dkrz.de/v1/dkrz_b381d76e-63d7-4aeb-96f0-dfd91e102d40/nextgems_prefinal/index.html)
 * [Atmospheric quickplots](https://swiftbrowser.dkrz.de/public/dkrz_cc566461dff84e59964ced89d96324d8/ngc4/)
@@ -150,7 +147,6 @@ For a quick look at results and output available, see
 * [Output variables by experiment](https://owncloud.gwdg.de/index.php/s/G6xEfuoHOZLB3Kt) (table)
 * [Interactive mapping of variable/output frequency/horizontal resolution for ngc4008](https://swift.dkrz.de/v1/dkrz_b381d76e-63d7-4aeb-96f0-dfd91e102d40/nextgems_prefinal/nextgems_prefinal_output.html)
   * [Same plus additional 3h mean data for 2027-04 - 2027-09](https://swift.dkrz.de/v1/dkrz_b381d76e-63d7-4aeb-96f0-dfd91e102d40/nextgems_prefinal/nextgems_prefinal_output_anim.html) **[:zap:volatile data](#Terms-and-conditions)**
-:::
 
  
 #### prefinal 
@@ -160,9 +156,7 @@ For a quick look at results and output available, see
 
 #### pre-prefinal experiments **[:zap:volatile data](#Terms-and-conditions)**
 
-:::info
 Only available for HEALPix zoom level 0 - 8, plus level 9 for _precipitation flux_
-:::
 
 * ngc4005 ^[[ngc4005 development info:lock:](https://gitlab.dkrz.de/icon/icon-mpim/-/issues/17)]: ssp370 like scenario run from 2020 :warning: intermittent changes in output configuration.
 Intake reference: `cat.ICON.ngc4005`
@@ -176,12 +170,10 @@ Intake reference: `cat.ICON.ngc4006`
 Intake reference: `cat.ICON.ngc4007`
     * Not restarted after about 1.3 years due stratocumulus albedo/temperature bias, in favor of ngc4008.
 
-::: warning
 #### Terms and conditions
 The datasets marked as **:zap:volatile data** are provided as-is with the understanding that these results are preliminary, are primarily meant for insights into the nature of model tuning and changes, and will neither be supported nor provided for use beyond the hackathon.
 
 If nevertheless you consider them relevant for your research, you are responsible to take the measures necessary to ensure good scientific practice, possibly including long-term storage. This does not waive any intellectual property rights of the data producers 
-:::
 
 ### Basic notes on HEALpix:
 | zoom index (ICON) | nside index (IFS/FESOM) |  resolution in degrees | resolution in km |
