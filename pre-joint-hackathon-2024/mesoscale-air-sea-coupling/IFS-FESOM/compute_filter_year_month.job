@@ -1,0 +1,32 @@
+#!/bin/sh
+#SBATCH --account=bk1377
+#SBATCH --job-name=lowpass_filter
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=lowpass_filter_%j.out
+#SBATCH --error=lowpass_filter_%j.err
+#SBATCH --exclusive
+#SBATCH --time=04:00:00
+#SBATCH --mail-type=END
+##SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+
+
+# Workaround for SLURM bug in chained jobs
+SLURM_JOB_NAME=ncatted
+sbatch () {
+    unset SLURM_MEM_PER_CPU
+    command sbatch "$@"
+}
+
+
+varname=$1
+yr=$2
+mn=$3
+
+# module purge 
+# source /work/mh0256/m300466/miniconda3/bin/activate
+source /home/b/b382473/.bashrc
+conda activate /work/bk1377/b382473/conda/envs/science39
+
+python compute_filter_year_month.py ${varname} ${yr} ${mn}

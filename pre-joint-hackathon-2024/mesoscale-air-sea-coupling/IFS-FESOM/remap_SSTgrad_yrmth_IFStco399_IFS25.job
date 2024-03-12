@@ -1,0 +1,57 @@
+#!/bin/sh
+#SBATCH --account=bk1377
+#SBATCH --job-name=remap_tco399_to_IFS25
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --mem=0
+#SBATCH --output=remap_tco399_to_IFS25_%j.log
+#SBATCH --error=remap_tco399_to_IFS25_%j.log
+#SBATCH --exclusive
+#SBATCH --time=01:00:00
+#SBATCH --mail-type=END
+##SBATCH --mail-user=dian.putrasahan@mpimet.mpg.de
+
+# Workaround for SLURM bug in chained jobs
+SLURM_JOB_NAME=ncatted
+sbatch () {
+    unset SLURM_MEM_PER_CPU
+    command sbatch "$@"
+}
+if [ -z "$1" ] ; then
+    echo "invalid number of parameters: need expid"
+    exit 1      #exit out of program
+fi
+# if [ -z "$2" ] ; then
+#     echo "invalid number of parameters: need invarname"
+#     exit 1      #exit out of program
+# fi
+# if [ -z "$3" ] ; then
+#     echo "invalid number of parameters: need namevar"
+#     exit 1      #exit out of program
+# fi
+
+expid=$1
+# invarname=$2
+# namevar=$3
+
+#expid='OSTIA_c_LR30_a_LR30'
+#invarname='wind_divcurl'
+#namevar='sd'
+#namevar='svo'
+
+srcgrid=/work/mh0256/m300466/ifsfesomgrids/variable_on_tco399gridpoint.nc
+wghtfile=/work/mh0256/m300466/ifsfesomgrids/tco399gridpoint_to_IFS25invertlat_conremapweights.nc
+targetgrid=/work/mh0256/m300466/DPP/grid/temp_IFS25invertlat_MR_gridexample.nc
+datadir=/work/bk1377/b382473/native/IFS/${expid}/SSTgrads_wind
+outdir=/work/bk1377/b382473/reg25/ifsamip/${expid}/SSTgrads_wind
+mkdir -p ${outdir}
+# mkdir -p ${outdir}/${expid}
+# mkdir -p ${outdir}/${expid}/${varname}
+
+for yyyy in $(seq 2010 2020);
+do
+    # cdo -P 32 -remap,${targetgrid},${wghtfile} -chname,${namevar},${varname} -selname,${namevar} ${datadir}/${expid}/${invarname}/${expid}_${invarname}_${yyyy}$_gridded.nc ${outdir}/${expid}/${varname}/${expid}_${varname}_${yyyy}$_IFS25.nc
+    # cdo -P 32 -remap,${targetgrid},${wghtfile} ${datadir}/SSTgradsi_${yyyy}.nc ${outdir}/SSTgradsi_${yyyy}$_IFS25.nc
+    cdo -P 32 -remap,${targetgrid},${wghtfile} -setgridtype,regular -setgrid,/home/b/b382473/grid_tco399.txt ${datadir}/SSTgradsi_${yyyy}.nc ${outdir}/SSTgradsi_${yyyy}$_IFS25.nc
+   done
+done
