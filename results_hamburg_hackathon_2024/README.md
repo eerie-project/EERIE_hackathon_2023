@@ -8,7 +8,8 @@ Hackathon was a success! Here's a collection of material from the hackathon, wit
 - [Slides and figures in this repo](ClosingPlenary) from the closing plenary session (includes hackathon pictures!)
   - [Owncloud folder](https://owncloud.gwdg.de/index.php/s/uTnNx02YuENDwYT?path=%2F) hosting slides from hackathon plenary sessions
 
-- IFS-AMIP: spatial scale dependency of air-sea coupling by Matthias Aengenheyster. Methodology, notebooks and scripts can be found [here](../pre-joint-hackathon-2024/mesoscale-air-sea-coupling/IFS-FESOM/README.md). 
+- IFS-AMIP: spatial scale dependency of air-sea coupling by Matthias Aengenheyster. Methodology, notebooks and scripts can be found [here](../pre-joint-hackathon-2024/mesoscale-air-sea-coupling/IFS-FESOM/README.md).
+- Other example notebooks for scientific analysis created before the hackathon can be found [here](../pre-joint-hackathon-2024/README.md).
 
 - Data viewers
   - Interactive variable browser by Fabian Wachsmann: [https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/eerie-cloud_view-and-access.html](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/eerie-cloud_view-and-access.html)
