@@ -140,8 +140,8 @@ dx_min = min(dxw.min(), dyw.min(), dxs.min(), dys.min()).data
 wet_mask = mask_land_100
 
 wet_mask       = wet_mask.fillna(0)              # wet mask needs to be ones and zeros
-wet_mask[0,:]  = np.zeros_like(wet_mask[0,:] )   # fix impact from southern boundary
-wet_mask[:,-1] = np.zeros_like(wet_mask[:,-1] )  # fix impact from eastern boundary
+# wet_mask[0,:]  = np.zeros_like(wet_mask[0,:] )   # fix impact from southern boundary
+# wet_mask[:,-1] = np.zeros_like(wet_mask[:,-1] )  # fix impact from eastern boundary
 
 mask_land_100_new =  wet_mask.where(wet_mask>0)
 
