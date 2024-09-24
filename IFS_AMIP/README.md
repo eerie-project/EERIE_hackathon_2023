@@ -4,17 +4,37 @@ For this hackathon we make available six preliminary low-resolution IFS-AMIP sim
 
 To explore which variables are available for which experiments and streams, the *metadata* directory contains searchable \<exp\>__\<stream\> .csv files listing the metadata for each variable. Additional information on ECMWF variables is available in the [ECMWF Parameter Database](https://codes.ecmwf.int/grib/param-db/) which can be searched by short name, GRIB code, units etc. Particular care is advised for flux data (precipitation, surface heat fluxes etc.) which may be provided either as *rates* (e.g. mm/day, W/m^2, typical for monthly means) or as *accumulations* (e.g. m, J/m^2, typical for high-frequency output).
 
-AMIP runs are atmosphere-only runs, withtout an ocean model, forced with sea surface temperature (SST) and sea ice concentration (SIC).
-Given the purpose of the AMIP runs to study the impact of the presence of mesoscale features, the runs exist in pairs: One is forced with observed SST and SIC, taken from the OSTIA dataset (also available under #OBSERVATIONS), while in additional experiments the observed SST *climatology* or *anomalies* are smoothed out with a filter the length scale of which is a multiple of the local Rossby radius of deformation. The multiple is indicated in the run ID, i.e. lr30 implies a factor of 30. For more details see #OBSERVATIONS.
+AMIP runs are atmosphere-only runs, without an ocean model, forced with sea surface temperature (SST) and sea ice concentration (SIC).
+Given the purpose of the AMIP runs to study the impact of the presence of mesoscale features, the runs exist in pairs: One is forced with observed SST and SIC, while in additional experiments the observed SST *climatology* or *anomalies* are smoothed out with a filter the length scale of which is a multiple of the local Rossby radius of deformation. The multiple is indicated in the run ID, i.e. lr30 implies a factor of 30. For more details see #OBSERVATIONS.
 
-| Run                | Data        |  SST
-|--------------------|-------------|-----------|
-| amip-hist-obs      | 2010 - 2020 | unfiltered OSTIA SST
-| amip-hist-obs-lr30 | 2010 - 2020 | OSTIA SST, with daily *anomalies* smoothed with 30 x Rossby radius
-| amip-hist-obs-c-lr30-a-0.atmos.gr025      | 2010 - 2020 | OSTIA SST, with daily *climatology* smoothed with 30 x Rossby radius
-| amip-hist-obs-c-lr30-a-lr30.atmos.gr025 | 2010 - 2020 | OSTIA SST, with both *climatology* and *anomalies* smoothed with 30 x Rossby radius
-| amip-ng-obs        | 2020 - 2021 | unfiltered OSTIA SST
-| amip-ng-obs-lr30   | 2020 - 2021 | OSTIA, with daily SST *anomalies* smoothed with 30 x Rossby radius
+In preliminary runs SST and SIC were taken from the OSTIA dataset (also available under #OBSERVATIONS), while for the production runs ESA-CCI v3 was used instead for better data quality (especially in the early period).
+
+| Catalogue | Experiment | Version | Resolution | Expver | Runname (deprecated)  | Date Range  |  SST      |
+|-----------|------------|---------|------------|--------|-----------------------|-------------|-----------|
+| ifs&#8209;amip&#8209;tco1279 | hist | v20240901 | tco1279 (~9km) | 0001 | -- | 1980 - 2023 | ESA-CCI v3 |
+| ifs-amip-tco399 | hist | v20240901 | tco399 (~28km) | 0002 | -- | 1980 - 2023 | ESA-CCI v3 |
+| ifs&#8209;amip&#8209;tco1279 | hist-c-0-a-lr20 | v20240901 | tco1279 (~9km) | 0003 | -- | 1980 - 2023 | ESA-CCI v3, anomalies smoothed with 20 x Rossby radius |
+| ifs-amip-tco399 | hist-c-0-a-lr20 | v20240901 | tco399 (~28km) | 0004 | -- | 1980 - 2023 | ESA-CCI v3, anomalies smoothed with 20 x Rossby radius |
+| ifs-amip-tco399 | hist-c-lr20-a-0 | v20240901 | tco399 (~28km) | 0006 | -- | 1980 - 2023 | ESA-CCI v3, climatology smoothed with 20 x Rossby radius |
+||
+| ifs-amip-tco399 | hist | v20240304 | tco399 (~28km) | -- | amip-hist-esav3      | 2020 - 2021-09 | unfiltered OSTIA SST
+| ifs-amip-tco399 | hist-c-0-a-lr30 | v20240304 | tco399 (~28km) | -- | amip-hist-esav3-c-0-a-lr30 | 2020 | OSTIA SST, with daily *anomalies* smoothed with 30 x Rossby radius
+||
+| ifs-amip-tco399 | hist | v20231106 | tco399 (~28km) | -- | amip-hist-obs      | 2010 - 2020 | unfiltered OSTIA SST
+| ifs-amip-tco399 | hist-c-0-a-lr30 | v20231106 | tco399 (~28km) | -- | amip-hist-obs-lr30 | 2010 - 2020 | OSTIA SST, with daily *anomalies* smoothed with 30 x Rossby radius
+| ifs-amip-tco399 | hist-c-lr30-a-0 | v20231106 | tco399 (~28km) | -- | amip-hist-obs-c-lr30-a-0.atmos.gr025      | 2010 - 2020 | OSTIA SST, with daily *climatology* smoothed with 30 x Rossby radius
+| ifs-amip-tco399 | hist&#8209;c&#8209;lr30&#8209;a&#8209;lr30 | v20231106 | tco399 (~28km) | -- | amip-hist-obs-c-lr30-a-lr30.atmos.gr025 | 2010 - 2020 | OSTIA SST, with both *climatology* and *anomalies* smoothed with 30 x Rossby radius
+||
+| ifs-amip-tco399 | hist | v20231006 | tco399 (~28km) | -- | amip-ng-obs        | 2020-01-20 - 2021 | unfiltered OSTIA SST
+| ifs-amip-tco399 | hist-c-0-a-lr30 | v20231006 | tco399 (~28km) | -- | amip-ng-obs-lr30   | 2020-01-20 - 2021 | OSTIA, with daily SST *anomalies* smoothed with 30 x Rossby radius
+
+Dates are inclusive (only year implies full year available, year-month implies full month is available).
+
+## Versions:
+* v20240901: Production runs, should be used unless otherwise indicated.
+* v20231006: Preliminary runs for the 2023 EERIE GA & Hackathon using NextGEMS cycle 3 configuration using OSTIA SST
+* v20231106: Preliminary runs for the 2023 EERIE GA & Hackathon using prepIFS based on IFS CY48R1.1 using OSTIA SST
+* v20240304: Preliminary runs for the 2024 Joing EERIE/nextGEMS Hackathon using prepIFS based on IFS CY48R1.1 using ESA-CCI v3 SST
 
 The "hist" runs are historical runs with time-dependent forcing based on IFS CY48R1.1, including some new EERIE source updates.
 The "ng" runs use the NextGEMS cycle 3 configuration, i.e. perpetual 2020 forcing (except for SST & SIC).
