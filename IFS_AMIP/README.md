@@ -1,5 +1,9 @@
 # IFS data from IFS-AMIP simulations done at ECMWF
 
+Contact: Matthias Aengenheyster @mattphysics, matthias.aengenheyster@ecmwf.int
+
+**For an immediate start with the data, look at the notebook "STARTHERE_IFS_production.ipynb". Continue reading for more information on the simulations.**
+
 For this hackathon we make available six preliminary low-resolution IFS-AMIP simulations run at ECMWF, at a tco399 resolution (approximately 28km). For ease of the analysis, most of the data provided for the hackathon has been regridded to a 0.25 degree regular grid. We do provide *some* 2D data on the native grid. The data is primarily accessible through the intake catalogue structure on DKRZ (data is also on Jasmin, more below).
 
 To explore which variables are available for which experiments and streams, the *metadata* directory contains searchable \<exp\>__\<stream\> .csv files listing the metadata for each variable. Additional information on ECMWF variables is available in the [ECMWF Parameter Database](https://codes.ecmwf.int/grib/param-db/) which can be searched by short name, GRIB code, units etc. Particular care is advised for flux data (precipitation, surface heat fluxes etc.) which may be provided either as *rates* (e.g. mm/day, W/m^2, typical for monthly means) or as *accumulations* (e.g. m, J/m^2, typical for high-frequency output).
@@ -40,22 +44,21 @@ The "hist" runs are historical runs with time-dependent forcing based on IFS CY4
 The "ng" runs use the NextGEMS cycle 3 configuration, i.e. perpetual 2020 forcing (except for SST & SIC).
 
 ## Data structure:
-The data is organized in streams by frequency, 2D/3D and grid (here only 0.25 degree) 
-amip-hist-obs and amip-hist-obs-lr30:
+The data is organized in streams by frequency, 2D/3D and grid (primarily at 0.25 degree, though some native data is available) 
 * 2D_6h_native: 6-hourly snapshots and accumulations of 2D data, *on the native tco399 grid*.
 * 2D_6h_0.25deg: 6-hourly snapshots and accumulations of 2D data
 * 2D_24h_0.25deg: daily snapshots and accumulations of 2D data
 * 2D_const_0.25deg: constant 2D fields (e.g. land-sea mask)
-* 2D_monthly_0.25deg: monthly means 2D data
-* 3D_24h_0.25deg: daily snapshots of 3D data
+* 2D_monthly_0.25deg: monthly means 2D data, also some min/max fields
+* 3D_24h_0.25deg: daily snapshots or means/min/max of 3D data
 * 3D_6h_0.25deg: 6-hourly snapshots of 3D data
-* 3D_monthly_0.25deg: monthly means of 3D data
-amip-ng-obs and amip-ng-obs-lr30:
-* all (available) output is in the dcda stream. It contains 2D data (6-hourly) and 3D data (24-hourly). One variable (density of lightning strikes in the past 6 hours) has been split off and is not in the stream "lightning".
+* 3D_monthly_0.25deg: monthly means,min,max of 3D data
+
+Note the "0.25deg" or "native" suffix is often dropped as the resolution is evident from the sub-catalogue.
 
 ## Notebooks
-
-* STARTHERE_IFS.ipynb - A few starting points on how to access the data, compute simple metrics and plot.
+* STARTHERE_IFS_production.ipynb - A few starting points on how to access the data, compute simple metrics and plot.
+* STARTHERE_IFS.ipynb - A (deprecated) starting notebook used for previous hackathon and preliminary simulations.
 
 ## Data collections
 
