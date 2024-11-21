@@ -17,13 +17,13 @@ In preliminary runs SST and SIC were taken from the OSTIA dataset (also availabl
 | ifs-amip-tco399 | hist-c-0-a-lr20 | v20240901 | tco399 (~28km) | 0004 | -- | 1980 - 2023 | ESA-CCI v3, anomalies smoothed with 20 x Rossby radius |
 | ifs-amip-tco399 | hist-c-lr20-a-0 | v20240901 | tco399 (~28km) | 0006 | -- | 1980 - 2023 | ESA-CCI v3, climatology smoothed with 20 x Rossby radius |
 ||
-| ifs-amip-tco399 | hist | v20240304 | tco399 (~28km) | -- | amip-hist-esav3      | 2020 - 2021-09 | unfiltered OSTIA SST
-| ifs-amip-tco399 | hist-c-0-a-lr30 | v20240304 | tco399 (~28km) | -- | amip-hist-esav3-c-0-a-lr30 | 2020 | OSTIA SST, with daily *anomalies* smoothed with 30 x Rossby radius
+| ifs-amip-tco399 | hist | v20240304 | tco399 (~28km) | iabh | amip-hist-esav3      | 2020 - 2021-09 | unfiltered OSTIA SST
+| ifs-amip-tco399 | hist-c-0-a-lr30 | v20240304 | tco399 (~28km) | iaou | amip-hist-esav3-c-0-a-lr30 | 2020 | OSTIA SST, with daily *anomalies* smoothed with 30 x Rossby radius
 ||
-| ifs-amip-tco399 | hist | v20231106 | tco399 (~28km) | -- | amip-hist-obs      | 2010 - 2020 | unfiltered OSTIA SST
-| ifs-amip-tco399 | hist-c-0-a-lr30 | v20231106 | tco399 (~28km) | -- | amip-hist-obs-lr30 | 2010 - 2020 | OSTIA SST, with daily *anomalies* smoothed with 30 x Rossby radius
-| ifs-amip-tco399 | hist-c-lr30-a-0 | v20231106 | tco399 (~28km) | -- | amip-hist-obs-c-lr30-a-0.atmos.gr025      | 2010 - 2020 | OSTIA SST, with daily *climatology* smoothed with 30 x Rossby radius
-| ifs-amip-tco399 | hist&#8209;c&#8209;lr30&#8209;a&#8209;lr30 | v20231106 | tco399 (~28km) | -- | amip-hist-obs-c-lr30-a-lr30.atmos.gr025 | 2010 - 2020 | OSTIA SST, with both *climatology* and *anomalies* smoothed with 30 x Rossby radius
+| ifs-amip-tco399 | hist | v20231106 | tco399 (~28km) | i6ps | amip-hist-obs      | 2010 - 2020 | unfiltered OSTIA SST
+| ifs-amip-tco399 | hist-c-0-a-lr30 | v20231106 | tco399 (~28km) | i6pt | amip-hist-obs-lr30 | 2010 - 2020 | OSTIA SST, with daily *anomalies* smoothed with 30 x Rossby radius
+| ifs-amip-tco399 | hist-c-lr30-a-0 | v20231106 | tco399 (~28km) | i7j7 | amip-hist-obs-c-lr30-a-0.atmos.gr025      | 2010 - 2020 | OSTIA SST, with daily *climatology* smoothed with 30 x Rossby radius
+| ifs-amip-tco399 | hist&#8209;c&#8209;lr30&#8209;a&#8209;lr30 | v20231106 | tco399 (~28km) | i7j8 | amip-hist-obs-c-lr30-a-lr30.atmos.gr025 | 2010 - 2020 | OSTIA SST, with both *climatology* and *anomalies* smoothed with 30 x Rossby radius
 ||
 | ifs-amip-tco399 | hist | v20231006 | tco399 (~28km) | -- | amip-ng-obs        | 2020-01-20 - 2021 | unfiltered OSTIA SST
 | ifs-amip-tco399 | hist-c-0-a-lr30 | v20231006 | tco399 (~28km) | -- | amip-ng-obs-lr30   | 2020-01-20 - 2021 | OSTIA, with daily SST *anomalies* smoothed with 30 x Rossby radius
