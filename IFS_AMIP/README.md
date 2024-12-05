@@ -4,12 +4,19 @@ Contact: Matthias Aengenheyster @mattphysics, matthias.aengenheyster@ecmwf.int
 
 **For an immediate start with the data, look at the notebook "STARTHERE_IFS_production.ipynb". Continue reading for more information on the simulations.**
 
-For this hackathon we make available six preliminary low-resolution IFS-AMIP simulations run at ECMWF, at a tco399 resolution (approximately 28km). For ease of the analysis, most of the data provided for the hackathon has been regridded to a 0.25 degree regular grid. We do provide *some* 2D data on the native grid. The data is primarily accessible through the intake catalogue structure on DKRZ (data is also on Jasmin, more below).
+**For interactive browsing of the available data on Levante, including interactive visualization, check the [STAC catalogue]([url](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/stac-browser/index.html#/external/raw.githubusercontent.com/eerie-project/intake_catalogues/refs/heads/main/dkrz/disk/stac-templates/catalog-experiments.json?.language=en)) and look for "ifs-amip"**
 
-To explore which variables are available for which experiments and streams, the *metadata* directory contains searchable \<exp\>__\<stream\> .csv files listing the metadata for each variable. Additional information on ECMWF variables is available in the [ECMWF Parameter Database](https://codes.ecmwf.int/grib/param-db/) which can be searched by short name, GRIB code, units etc. Particular care is advised for flux data (precipitation, surface heat fluxes etc.) which may be provided either as *rates* (e.g. mm/day, W/m^2, typical for monthly means) or as *accumulations* (e.g. m, J/m^2, typical for high-frequency output).
+We make available the IFS-AMIP production runs (indicated by version "v20240901") for EERIE, as well as six preliminary low-resolution (tco399, approximately 28 km) IFS-AMIP simulations. For ease of the analysis, most of the data provided for the hackathon has been regridded to a 0.25 degree regular grid. We do provide *some* 2D data on the native grid. The data is primarily accessible through the intake catalogue structure on DKRZ (some data is also on Jasmin, more below).
 
 AMIP runs are atmosphere-only runs, without an ocean model, forced with sea surface temperature (SST) and sea ice concentration (SIC).
-Given the purpose of the AMIP runs to study the impact of the presence of mesoscale features, the runs exist in pairs: One is forced with observed SST and SIC, while in additional experiments the observed SST *climatology* or *anomalies* are smoothed out with a filter the length scale of which is a multiple of the local Rossby radius of deformation. The multiple is indicated in the run ID, i.e. lr30 implies a factor of 30. For more details see #OBSERVATIONS.
+
+We have conducted two primary *types* of runs: 
+1. historical ("hist") runs, that is AMIP runs initialized from ERA5 and forced with observed SST and sea ice (for the production runs, this is ESA-CCI v3).
+2. idealized runs where either the SST anomaly or the SST climatology has been low-pass filtered to remove the time-varying mesoscale, or climatological fronts. These are labeled by the kind of filtering, e.g. "hist-c-0-a-lr20" indicates no filtering to the climatology ("c-0") and filtering to the anomalies with 20 times the local Rossby radius ("a-lr20"). 
+
+A large number of variables have been provided at various frequencies, and even more are available on request. The native catalouges contain the year 2023 for all available variables and frequencies. Please explore the catalogues through "intake" (see the notebooks) or the [STAC catalogue]([url](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/stac-browser/index.html#/external/raw.githubusercontent.com/eerie-project/intake_catalogues/refs/heads/main/dkrz/disk/stac-templates/catalog-experiments.json?.language=en)). 
+
+For the preliminary runs, you can explore available variables through the *metadata* directory and its searchable \<exp\>__\<stream\> .csv files listing the metadata for each variable. Additional information on ECMWF variables is available in the [ECMWF Parameter Database](https://codes.ecmwf.int/grib/param-db/) which can be searched by short name, GRIB code, units etc. Particular care is advised for flux data (precipitation, surface heat fluxes etc.) which may be provided either as *rates* (e.g. m/s, W/m^2, typical for monthly means) or as *accumulations* (e.g. m, J/m^2, typical for high-frequency output).
 
 In preliminary runs SST and SIC were taken from the OSTIA dataset (also available under #OBSERVATIONS), while for the production runs ESA-CCI v3 was used instead for better data quality (especially in the early period).
 
@@ -55,6 +62,19 @@ The data is organized in streams by frequency, 2D/3D and grid (primarily at 0.25
 * 3D_monthly_0.25deg: monthly means,min,max of 3D data
 
 Note the "0.25deg" or "native" suffix is often dropped as the resolution is evident from the sub-catalogue.
+
+## Units
+The 6-hourly output is generally given as instantaneous state variables (e.g. temperature) or accumulated fluxes (e.g. precipitation). Accumulations are given in accumulated units (e.g. for precipitation, in metres), which can be understood as per time-interval, which for our data are always 6 hours. 
+Instantaneous variables are contained in catalogues like "2D_6h", while accumulations are in "2D_6h_acc". 
+
+Daily means and monthly means are computed from hourly model output. State variables retain their units (e.g. Kelvin for temperature) while accumulated variables are converted in *mean rates* (e.g. m/s for precipitation). The temporal means for accumulated variables are exact up to numerical precision. In addition there are a few "maximum" and "minimum" output variables (maximum wind gust, maximum and minimum surface air temperature) which represent the statistics over the time-interval and are computed model-internally at model timestep resolution.
+
+The time-axis of the catalogues is constructed to reflect the valid time-period of the data:
+* Instantaneous variables are at their valid time, e.g. temperature at 12:00 represents the instantenous value at that time.
+* Accumulated and mean/min/max variables are shifted to the center of their valid *period*, e.g. accumulated precipitation from 00:00 - 06:00 is coded at 03:00.
+* Daily means are coded at 12:00
+* Monthly means are coded at 12:00 on the 15th of each month.
+
 
 ## Notebooks
 * STARTHERE_IFS_production.ipynb - A few starting points on how to access the data, compute simple metrics and plot.
