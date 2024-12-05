@@ -2,11 +2,15 @@
 
 Contact: Matthias Aengenheyster @mattphysics, matthias.aengenheyster@ecmwf.int
 
+![title_picture_github_v3](https://github.com/user-attachments/assets/b5a2d7a4-9f9f-4bbc-a39f-96b3a44e2363)
+
+
+
 **For an immediate start with the data, look at the notebook "STARTHERE_IFS_production.ipynb". Continue reading for more information on the simulations.**
 
-**For interactive browsing of the available data on Levante, including interactive visualization, check the [STAC catalogue]([url](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/stac-browser/index.html#/external/raw.githubusercontent.com/eerie-project/intake_catalogues/refs/heads/main/dkrz/disk/stac-templates/catalog-experiments.json?.language=en)) and look for "ifs-amip"**
+**For interactive browsing of the available data on Levante, including interactive visualization, check the [STAC catalogue](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/stac-browser/index.html#/external/raw.githubusercontent.com/eerie-project/intake_catalogues/refs/heads/main/dkrz/disk/stac-templates/catalog-experiments.json?.language=en) and look for "ifs-amip".**
 
-We make available the IFS-AMIP production runs (indicated by version "v20240901") for EERIE, as well as six preliminary low-resolution (tco399, approximately 28 km) IFS-AMIP simulations. For ease of the analysis, most of the data provided for the hackathon has been regridded to a 0.25 degree regular grid. We do provide *some* 2D data on the native grid. The data is primarily accessible through the intake catalogue structure on DKRZ (some data is also on Jasmin, more below).
+We make available the IFS-AMIP production runs (indicated by version "v20240901") for EERIE, as well as six preliminary low-resolution (tco399, approximately 28 km) IFS-AMIP simulations. For ease of the analysis, most of the data is available on a 0.25 degree regular grid. We do provide *some* data. The data is primarily accessible through the intake catalogue structure on DKRZ (some data is also on Jasmin, more below).
 
 AMIP runs are atmosphere-only runs, without an ocean model, forced with sea surface temperature (SST) and sea ice concentration (SIC).
 
@@ -14,7 +18,7 @@ We have conducted two primary *types* of runs:
 1. historical ("hist") runs, that is AMIP runs initialized from ERA5 and forced with observed SST and sea ice (for the production runs, this is ESA-CCI v3).
 2. idealized runs where either the SST anomaly or the SST climatology has been low-pass filtered to remove the time-varying mesoscale, or climatological fronts. These are labeled by the kind of filtering, e.g. "hist-c-0-a-lr20" indicates no filtering to the climatology ("c-0") and filtering to the anomalies with 20 times the local Rossby radius ("a-lr20"). 
 
-A large number of variables have been provided at various frequencies, and even more are available on request. The native catalouges contain the year 2023 for all available variables and frequencies. Please explore the catalogues through "intake" (see the notebooks) or the [STAC catalogue]([url](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/stac-browser/index.html#/external/raw.githubusercontent.com/eerie-project/intake_catalogues/refs/heads/main/dkrz/disk/stac-templates/catalog-experiments.json?.language=en)). 
+A large number of variables have been provided at various frequencies, and even more are available on request. The native catalouges contain the year 2023 for all available variables and frequencies. Please explore the catalogues via "intake" (see the notebooks) or the [STAC catalogue](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/stac-browser/index.html#/external/raw.githubusercontent.com/eerie-project/intake_catalogues/refs/heads/main/dkrz/disk/stac-templates/catalog-experiments.json?.language=en). 
 
 For the preliminary runs, you can explore available variables through the *metadata* directory and its searchable \<exp\>__\<stream\> .csv files listing the metadata for each variable. Additional information on ECMWF variables is available in the [ECMWF Parameter Database](https://codes.ecmwf.int/grib/param-db/) which can be searched by short name, GRIB code, units etc. Particular care is advised for flux data (precipitation, surface heat fluxes etc.) which may be provided either as *rates* (e.g. m/s, W/m^2, typical for monthly means) or as *accumulations* (e.g. m, J/m^2, typical for high-frequency output).
 
@@ -85,7 +89,7 @@ The time-axis of the catalogues is constructed to reflect the valid time-period 
 IFS data are stored in [intake catalogues](https://intake.readthedocs.io/en/latest/catalog.html): [EERIE intake catalogues[(https://github.com/eerie-project/intake_catalogues/tree/main). We attempt to show the available variables through the .csv files in the metadata directory.
 
 ## Data on Jasmin
-Most of the dataset has been mirrored to Jasmin. Currently it is not within an intake-catalogue structure. However it can be loaded using the underlying .json files "like zarr files".
+Most of the data of the preliminary runs has been mirrored to Jasmin. Currently it is not within an intake-catalogue structure. However it can be loaded using the underlying .json files "like zarr files".
 \<stream\> gives the stream name (see above), \<dim\> is either "2d" or "3d" depending on whether it is 2D or 3D data.
 Locations:
 * amip-hist-obs: /gws/nopw/j04/eerie/model_derived_data/EERIE/IFS-AMIP/prepIFS/OSTIA/gribscan/\<stream\>/json.dir/atm\<dim\>.json
@@ -98,3 +102,5 @@ ds = xr.open_zarr(
     'reference::path_to_json',
     consolidated=False
 )
+
+We will make production-run data available on Jasmin in due course.
