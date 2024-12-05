@@ -16,7 +16,9 @@ AMIP runs are atmosphere-only runs, without an ocean model, forced with sea surf
 
 We have conducted two primary *types* of runs: 
 1. historical ("hist") runs, that is AMIP runs initialized from ERA5 and forced with observed SST and sea ice (for the production runs, this is ESA-CCI v3).
-2. idealized runs where either the SST anomaly or the SST climatology has been low-pass filtered to remove the time-varying mesoscale, or climatological fronts. These are labeled by the kind of filtering, e.g. "hist-c-0-a-lr20" indicates no filtering to the climatology ("c-0") and filtering to the anomalies with 20 times the local Rossby radius ("a-lr20"). 
+2. idealized runs where either the SST anomaly or the SST climatology has been low-pass filtered to remove the time-varying mesoscale, or climatological fronts. These are labeled by the kind of filtering, e.g. "hist-c-0-a-lr20" indicates no filtering to the climatology ("c-0") and filtering to the anomalies with 20 times the local Rossby radius ("a-lr20").
+
+The production runs have one member at Tco1279 (~ 9km) and five members at Tco399 (~28 km). They all go from 1980-2023. For more details consult the table below.
 
 A large number of variables have been provided at various frequencies, and even more are available on request. The native catalouges contain the year 2023 for all available variables and frequencies. Please explore the catalogues via "intake" (see the notebooks) or the [STAC catalogue](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/stac-browser/index.html#/external/raw.githubusercontent.com/eerie-project/intake_catalogues/refs/heads/main/dkrz/disk/stac-templates/catalog-experiments.json?.language=en). 
 
