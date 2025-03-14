@@ -1,4 +1,4 @@
-# IFS data from IFS-AMIP simulations done at ECMWF
+# IFS data from IFS-AMIP simulations done at ECMWF for the EERIE project
 
 Contact: Matthias Aengenheyster @mattphysics, matthias.aengenheyster@ecmwf.int
 
@@ -10,21 +10,26 @@ Contact: Matthias Aengenheyster @mattphysics, matthias.aengenheyster@ecmwf.int
 
 **For interactive browsing of the available data on Levante, including interactive visualization, check the [STAC catalogue](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/stac-browser/index.html#/external/raw.githubusercontent.com/eerie-project/intake_catalogues/refs/heads/main/dkrz/disk/stac-templates/catalog-experiments.json?.language=en) and look for "ifs-amip".**
 
-We make available the IFS-AMIP production runs (indicated by version "v20240901") for EERIE, as well as six preliminary low-resolution (tco399, approximately 28 km) IFS-AMIP simulations. For ease of the analysis, most of the data is available on a 0.25 degree regular grid. We do provide *some* data. The data is primarily accessible through the intake catalogue structure on DKRZ (some data is also on Jasmin, more below).
+We make available the IFS-AMIP production runs (indicated by version "v20240901") conducted for the Horizon Europe project [EERIE](https://eerie-project.eu). 
 
-AMIP runs are atmosphere-only runs, without an ocean model, forced with sea surface temperature (SST) and sea ice concentration (SIC).
+The production runs have one member at resolution Tco1279 (~ 9km) and 10 members at Tco399 (~28 km). All simulations run from 1980-2023 forced with observed fields. For details consult the table below, or continue reading.
+
+AMIP runs are atmosphere-only runs, without an ocean model, forced with sea surface temperature (SST) and sea ice concentration (SIC) taken from ESA-CCI v3.
 
 We have conducted two primary *types* of runs: 
-1. historical ("hist") runs, that is AMIP runs initialized from ERA5 and forced with observed SST and sea ice (for the production runs, this is ESA-CCI v3).
-2. idealized runs where either the SST anomaly or the SST climatology has been low-pass filtered to remove the time-varying mesoscale, or climatological fronts. These are labeled by the kind of filtering, e.g. "hist-c-0-a-lr20" indicates no filtering to the climatology ("c-0") and filtering to the anomalies with 20 times the local Rossby radius ("a-lr20").
+1. historical ("hist") runs: AMIP runs initialized from ERA5 and forced with observed SST and sea ice
+2. idealized runs where either the SST anomaly or the SST climatology has been low-pass filtered to remove either the time-varying mesoscale, or climatological fronts. These are labeled by the kind of filtering, e.g. "hist-c-0-a-lr20" indicates no filtering to the climatology ("c-0") and filtering to the anomalies with 20 times the local Rossby radius ("a-lr20").
 
-The production runs have one member at Tco1279 (~ 9km) and five members at Tco399 (~28 km). They all go from 1980-2023. For more details consult the table below.
+A large number of variables have been provided at various frequencies, and even more are available on request. The native catalogues contain the year 2023 for all available variables and frequencies. Please explore the catalogues via "intake" (see the notebooks) or the [STAC catalogue](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/stac-browser/index.html#/external/raw.githubusercontent.com/eerie-project/intake_catalogues/refs/heads/main/dkrz/disk/stac-templates/catalog-experiments.json?.language=en). 
 
-A large number of variables have been provided at various frequencies, and even more are available on request. The native catalouges contain the year 2023 for all available variables and frequencies. Please explore the catalogues via "intake" (see the notebooks) or the [STAC catalogue](https://swift.dkrz.de/v1/dkrz_7fa6baba-db43-4d12-a295-8e3ebb1a01ed/apps/stac-browser/index.html#/external/raw.githubusercontent.com/eerie-project/intake_catalogues/refs/heads/main/dkrz/disk/stac-templates/catalog-experiments.json?.language=en). 
+We also make available a few preliminary low-resolution (tco399, approximately 28 km) IFS-AMIP simulations. For ease of the analysis, most of the data is available on a 0.25 degree regular grid. The data is primarily accessible through the intake catalogue structure on DKRZ (some data is also on Jasmin, more below).
 
 For the preliminary runs, you can explore available variables through the *metadata* directory and its searchable \<exp\>__\<stream\> .csv files listing the metadata for each variable. Additional information on ECMWF variables is available in the [ECMWF Parameter Database](https://codes.ecmwf.int/grib/param-db/) which can be searched by short name, GRIB code, units etc. Particular care is advised for flux data (precipitation, surface heat fluxes etc.) which may be provided either as *rates* (e.g. m/s, W/m^2, typical for monthly means) or as *accumulations* (e.g. m, J/m^2, typical for high-frequency output).
 
 In preliminary runs SST and SIC were taken from the OSTIA dataset (also available under #OBSERVATIONS), while for the production runs ESA-CCI v3 was used instead for better data quality (especially in the early period).
+
+## Table of experiments available on DKRZ Levante:
+Note that short (< 1 year) tco2559 (~4.4 km) runs were conducted, these are not at the moment available on Levante. Please get in touch if interested.
 
 | Catalogue | Experiment | Version | Resolution | Expver | Runname (deprecated)  | Date Range  |  SST      |
 |-----------|------------|---------|------------|--------|-----------------------|-------------|-----------|
